@@ -1,0 +1,140 @@
+
+## PERSONAL MAINTENANCE BY DEGAWONG
+
+PROJECT(imageAlgorithm)
+
+CMAKE_MINIMUM_REQUIRED (VERSION 2.5)
+
+# display the plantform infomation
+MESSAGE(STATUS "======================================") 
+MESSAGE(STATUS "OPERATION SYSTEM : ${CMAKE_SYSTEM}") 
+
+IF (CMAKE_SYSTEM_NAME MATCHES "Linux")
+	MESSAGE(STATUS "CURRENT PLATFORM : LINUX")
+	OPTION (DEGA_PLATFORM_LINUX "time function" ON)
+ELSEIF (CMAKE_SYSTEM_NAME MATCHES "Windows")
+	MESSAGE(STATUS "CURRENT PLATFORM : WINDOWS")
+	OPTION (DEGA_PLATFORM_WINDOW "time function" ON)
+ELSEIF (CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
+	MESSAGE(STATUS "CURRENT PLATFORM : FREEBSD")
+	OPTION (DEGA_PLATFORM_FREEBSD "time function" ON)
+ELSE ()
+	MESSAGE(STATUS "CURRENT PLATFORM : ${CMAKE_SYSTEM_NAME}")
+	MESSAGE(STATUS "STILL NO TIME FUNCTION IN ${CMAKE_SYSTEM_NAME}")
+ENDIF(CMAKE_SYSTEM_NAME MATCHES "Linux")
+
+MESSAGE(STATUS "======================================")
+
+IF(DEGA_PLATFORM_LINUX)
+	ADD_DEFINITIONS(-DDEGA_TIME_LINUX)
+ELSEIF(DEGA_PLATFORM_WINDOW)
+	ADD_DEFINITIONS(-DDEGA_TIME_WINDOW)
+ELSEIF(DEGA_PLATFORM_FREEBSD)	
+	ADD_DEFINITIONS(-DDEGA_TIME_FREEBSD)
+ENDIF(DEGA_PLATFORM_LINUX)
+
+# choose different directory in different model
+# if(WIN32 AND NOT MINGW)
+  # if(NOT DEFINED CMAKE_DEBUG_POSTFIX)
+    # set(CMAKE_DEBUG_POSTFIX "_debug")
+  # endif()
+  # if(NOT DEFINED CMAKE_RELEASE_POSTFIX)
+    # set(CMAKE_RELEASE_POSTFIX "_release")
+  # endif()
+  # if(NOT DEFINED CMAKE_RELWITHDEBINFO_POSTFIX)
+    # set(CMAKE_RELWITHDEBINFO_POSTFIX "_release")
+  # endif()
+  # if(NOT DEFINED CMAKE_MINSIZEREL_POSTFIX)
+    # set(CMAKE_MINSIZEREL_POSTFIX "_release")
+  # endif()
+# endif()
+# MESSAGE(STATUS ${CMAKE_BUILD_TYPE})
+# MESSAGE(STATUS "======================================")
+
+FIND_PACKAGE(OpenCV REQUIRED)
+MESSAGE(STATUS "OPENCV VERSION : ${OpenCV_VERSION}")
+MESSAGE(STATUS "======================================")
+
+# 32 or 64
+# if(CMAKE_SIZEOF_VOID_P EQUAL 4)
+  # set(VLD_LIB_SUFFIX Win32)
+# else()
+  # set(VLD_LIB_SUFFIX Win64)
+# endif()
+# find_path(VLD_LIBRARY_DIR)
+# MESSAGE(STATUS "======================================")
+
+set(DIR_SUB_PROJ
+    ./mat
+	./time
+	./exception)	
+
+foreach(SUB_DIR
+    ${DIR_SUB_PROJ}
+    )
+	ADD_SUBDIRECTORY(${SUB_DIR})
+endforeach()
+
+AUX_SOURCE_DIRECTORY(. FILE_ROOT_SRCS)
+
+# enable the pack function
+SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON) 
+SET_PROPERTY(TARGET mat PROPERTY FOLDER "Mat")
+SET_PROPERTY(TARGET time PROPERTY FOLDER "Time")
+# SET_PROPERTY(TARGET dlib PROPERTY FOLDER "3rdParty")
+SET_PROPERTY(TARGET exception PROPERTY FOLDER "Exception")
+
+set(DIR_ROOT_INCLUDE
+    ./mat
+	./base
+	./time
+	./exception
+	${OpenCV_INCLUDE_DIRS})
+	
+INCLUDE_DIRECTORIES(${DIR_ROOT_INCLUDE})
+
+set(DIRE_ROOT_HEAD
+    ./mat
+	./time)
+
+foreach(SUB_DIR
+    ${DIRE_ROOT_HEAD}
+    )	
+	FILE(GLOB_RECURSE SUB_ROOT_HEADERS  ${SUB_DIR}/*.h)
+	set(FILE_ROOT_HEADERS
+		${SUB_ROOT_HEADERS}
+		${FILE_ROOT_HEADERS})
+endforeach()
+
+SOURCE_GROUP("Head Files" FILES ${FILE_ROOT_HEADERS}) 
+
+set(LIBS_DIR_ROOT
+	mat
+	time
+    exception
+    ${OpenCV_LIBS})
+
+ADD_EXECUTABLE(${PROJECT_NAME} 
+			   ${FILE_ROOT_SRCS} 
+			   ${FILE_ROOT_HEADERS})
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${LIBS_DIR_ROOT})
+
+SET_DIRECTORY_PROPERTIES(PROPERTIES VS_STARTUP_PROJECT ${PROJECT_NAME})
+MESSAGE(STATUS "===============END====================")
+
+
+
+##LINK_DIRECTORIES(directory1 directory2 ...)
+##if (USE_MYMATH)
+##  include_directories ("${PROJECT_SOURCE_DIR}/MathFunctions")
+##  add_subdirectory (MathFunctions)
+##  set (EXTRA_LIBS ${EXTRA_LIBS} MathFunctions)
+##endif (USE_MYMATH)
+##
+##install (TARGETS Tutorial DESTINATION bin)
+##install (FILES "${PROJECT_BINARY_DIR}/TutorialConfig.h"        
+##         DESTINATION include)
+
+# share variable
+# set(ICD_LIBRARY "${PROJECT_BINARY_DIR}/lib" CACHE INTERNAL "ICD Library location" )
+# set_property(GLOBAL PROPERTY INCLUDE_OPENCL_1_2 "${CMAKE_CURRENT_LIST_DIR}/include/1.2" )
