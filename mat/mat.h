@@ -177,7 +177,7 @@ public:
 
 	_T& operator()(const int& _width, const int& _height);
 public:
-	friend std::istream& operator >> (std::istream& is, _T _value) {
+	friend std::istream& operator >> (std::istream& is, mat<_T> &_mat) {
 		is >> _mat.data[0];
 		return is;
 	}
@@ -937,15 +937,13 @@ mat<_T>& mat<_T>::operator *= (const mat<_T>& _mat) {
 
 template<typename _T>
 mat<_T>& mat<_T>::operator /= (const mat<_T>& _mat) {
-	try {
-		if (0 == _value)
-		{
-			throw paraExce;
-		}
-		
+	try {		
 		for (int loop_i = 0; loop_i < height; loop_i++) {
 			for (int loop_j = 0; loop_j < width; loop_j++) {
 				for (int loop_k = 0; loop_k < chanels; loop_k++) {
+					if (0 == _mat.data[0][loop_i * pitch[0] + loop_j * chanels + loop_k]) {
+						throw cParaExce("divide zero error");
+					}
 					data[0][loop_i * pitch[0] + loop_j * chanels + loop_k] /= _mat.data[0][loop_i * pitch[0] + loop_j * chanels + loop_k];
 				}
 			}
@@ -961,7 +959,7 @@ mat<_T>& mat<_T>::operator /= (const mat<_T>& _mat) {
 
 template<typename _T>
 inline _T & mat<_T>::operator()(const int & _width, const int & _height) {
-	return data[0][_height * pitch[0] + _width * getChanels()]
+	return data[0][_height * pitch[0] + _width * getChanels()];
 }
 
 /* get _mat format */
