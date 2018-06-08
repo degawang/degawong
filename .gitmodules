@@ -1,0 +1,3 @@
+[submodule "3rdParty/armadillo"]
+	path = 3rdParty/armadillo
+	url = https://github.com/degawong/armadillo.git
