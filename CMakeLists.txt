@@ -65,6 +65,7 @@ MESSAGE(STATUS "======================================")
 # MESSAGE(STATUS "======================================")
 
 set(DIR_SUB_PROJ
+	./gui
     ./mat
 	./time
 	./exception)	
@@ -79,12 +80,14 @@ AUX_SOURCE_DIRECTORY(. FILE_ROOT_SRCS)
 
 # enable the pack function
 SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON) 
+SET_PROPERTY(TARGET gui PROPERTY FOLDER "Gui")
 SET_PROPERTY(TARGET mat PROPERTY FOLDER "Mat")
 SET_PROPERTY(TARGET time PROPERTY FOLDER "Time")
 # SET_PROPERTY(TARGET dlib PROPERTY FOLDER "3rdParty")
 SET_PROPERTY(TARGET exception PROPERTY FOLDER "Exception")
 
 set(DIR_ROOT_INCLUDE
+	./gui
     ./mat
 	./base
 	./time
@@ -94,6 +97,7 @@ set(DIR_ROOT_INCLUDE
 INCLUDE_DIRECTORIES(${DIR_ROOT_INCLUDE})
 
 set(DIRE_ROOT_HEAD
+	./gui
     ./mat
 	./time)
 
@@ -109,6 +113,7 @@ endforeach()
 SOURCE_GROUP("Head Files" FILES ${FILE_ROOT_HEADERS}) 
 
 set(LIBS_DIR_ROOT
+	gui
 	mat
 	time
     exception

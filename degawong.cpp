@@ -1,6 +1,7 @@
 ﻿
 #include "iostream"
 #include "mat.h"
+#include "cDegaGui.h"
 #include "cDegaTime.h"
 
 #include "opencv2/opencv.hpp"
@@ -22,7 +23,8 @@ int main()
 	}
 
 	Mat img = imread("000.jpg");
-	imshow("i am a good boy", img);
+	cDegaGui dega;
+	dega.disImage(img, "imgoodboy");
 	cvWaitKey(0);
 
 	return 0;
