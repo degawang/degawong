@@ -2,7 +2,7 @@
 AUX_SOURCE_DIRECTORY(. FILE_MAT_SRCS)
 
 set(DIR_MAT_INCLUDE
-    ./
+    	./
 	../base
 	../time
 	../exception)	
@@ -21,3 +21,5 @@ endforeach()
 SOURCE_GROUP("Head Files" FILES ${FILE_MAT_HEADERS}) 
 
 ADD_LIBRARY(mat ${FILE_MAT_SRCS} ${FILE_MAT_HEADERS})
+
+MESSAGE(STATUS "===============mat====================")

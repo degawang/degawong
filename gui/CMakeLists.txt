@@ -2,11 +2,10 @@
 AUX_SOURCE_DIRECTORY(. FILE_GUI_SRCS)
 
 set(DIR_GUI_INCLUDE
-    ./
+	./
 	../base
 	../time
-	../exception
-	${OpenCV_INCLUDE_DIRS})
+	../exception)
 	
 INCLUDE_DIRECTORIES(${DIR_GUI_INCLUDE})
 
@@ -22,3 +21,5 @@ endforeach()
 SOURCE_GROUP("Head Files" FILES ${FILE_GUI_HEADERS}) 
 
 ADD_LIBRARY(gui ${FILE_GUI_SRCS} ${FILE_GUI_HEADERS})
+
+MESSAGE(STATUS "===============gui====================")

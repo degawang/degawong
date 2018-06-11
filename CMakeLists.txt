@@ -5,6 +5,10 @@ PROJECT(imageAlgorithm)
 
 CMAKE_MINIMUM_REQUIRED (VERSION 2.5)
 
+IF(COMMAND CMAKE_POLICY)
+	CMAKE_POLICY(SET CMP0003 NEW)
+ENDIF(COMMAND CMAKE_POLICY)
+
 # display the plantform infomation
 MESSAGE(STATUS "======================================") 
 MESSAGE(STATUS "OPERATION SYSTEM : ${CMAKE_SYSTEM}") 
@@ -65,10 +69,11 @@ MESSAGE(STATUS "======================================")
 # MESSAGE(STATUS "======================================")
 
 set(DIR_SUB_PROJ
-	./gui
-    ./mat
-	./time
-	./exception)	
+	gui
+    	mat
+	time
+	exception
+	algorithm/deformation/mls)	
 
 foreach(SUB_DIR
     ${DIR_SUB_PROJ}
@@ -83,31 +88,33 @@ SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
 SET_PROPERTY(TARGET gui PROPERTY FOLDER "Gui")
 SET_PROPERTY(TARGET mat PROPERTY FOLDER "Mat")
 SET_PROPERTY(TARGET time PROPERTY FOLDER "Time")
+SET_PROPERTY(TARGET mls PROPERTY FOLDER "Algorithm")
 # SET_PROPERTY(TARGET dlib PROPERTY FOLDER "3rdParty")
 SET_PROPERTY(TARGET exception PROPERTY FOLDER "Exception")
 
 set(DIR_ROOT_INCLUDE
-	./gui
-    ./mat
-	./base
-	./time
-	./exception
+	gui
+	mat
+	base
+	time
+	exception
+	algorithm/deformation/mls
 	${OpenCV_INCLUDE_DIRS})
 	
 INCLUDE_DIRECTORIES(${DIR_ROOT_INCLUDE})
 
 set(DIRE_ROOT_HEAD
-	./gui
-    ./mat
-	./time)
+	gui
+    	mat
+	time)
 
 foreach(SUB_DIR
     ${DIRE_ROOT_HEAD}
     )	
-	FILE(GLOB_RECURSE SUB_ROOT_HEADERS  ${SUB_DIR}/*.h)
-	set(FILE_ROOT_HEADERS
-		${SUB_ROOT_HEADERS}
-		${FILE_ROOT_HEADERS})
+FILE(GLOB_RECURSE SUB_ROOT_HEADERS  ${SUB_DIR}/*.h)
+set(FILE_ROOT_HEADERS
+	${SUB_ROOT_HEADERS}
+	${FILE_ROOT_HEADERS})
 endforeach()
 
 SOURCE_GROUP("Head Files" FILES ${FILE_ROOT_HEADERS}) 
@@ -116,17 +123,17 @@ set(LIBS_DIR_ROOT
 	gui
 	mat
 	time
-    exception
-    ${OpenCV_LIBS})
+    	exception
+	algorithm/deformation/mls
+    	${OpenCV_LIBS})
 
 ADD_EXECUTABLE(${PROJECT_NAME} 
-			   ${FILE_ROOT_SRCS} 
-			   ${FILE_ROOT_HEADERS})
+		${FILE_ROOT_SRCS} 
+		${FILE_ROOT_HEADERS})
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${LIBS_DIR_ROOT})
 
 SET_DIRECTORY_PROPERTIES(PROPERTIES VS_STARTUP_PROJECT ${PROJECT_NAME})
 MESSAGE(STATUS "===============END====================")
-
 
 
 ##LINK_DIRECTORIES(directory1 directory2 ...)

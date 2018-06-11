@@ -17,3 +17,5 @@ endforeach()
 SOURCE_GROUP("Head Files" FILES ${FILE_EXCEPTION_HEADERS}) 
 
 ADD_LIBRARY(exception ${FILE_EXCEPTION_SRCS} ${FILE_EXCEPTION_HEADERS})
+
+MESSAGE(STATUS "===============exception==============")
