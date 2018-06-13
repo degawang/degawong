@@ -4,6 +4,10 @@
 #include "cDegaGui.h"
 #include "cDegaTime.h"
 
+#ifdef DEGA_3RD_PARTY
+#include "armadillo"
+#endif // DEGA_3RD_PARTY
+
 #include "opencv2/opencv.hpp"
 
 using namespace cv;
@@ -21,7 +25,8 @@ int main()
 		mat_2 = mat_3 + 5;
 		mat_3.print();
 	}
-
+	//arma::mat A(5, 5, arma::fill::randu);
+	//cout << A << endl;
 	Mat img = imread("000.jpg");
 	cDegaGui dega;
 	dega.disImage(img, "imgoodboy");

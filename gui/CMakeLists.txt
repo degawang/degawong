@@ -6,8 +6,9 @@ set(DIR_GUI_INCLUDE
 	../base
 	../time
 	../exception)
-	
+
 INCLUDE_DIRECTORIES(${DIR_GUI_INCLUDE})
+INCLUDE_DIRECTORIES(${OpenCV_INCLUDE_DIRS})
 
 foreach(SUB_DIR
     ${DIR_GUI_INCLUDE}

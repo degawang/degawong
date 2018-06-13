@@ -3,12 +3,12 @@
 #include "string"
 #include "iostream"
 
-#ifdef DEGA_TIME_WINDOW
+#ifdef DEGA_PLATFORM_WINDOW
 #include "Windows.h"
-#endif // DEGA_TIME_WINDOW
-#ifdef DEGA_TIME_LINUX
+#endif // DEGA_PLATFORM_WINDOW
+#ifdef DEGA_PLATFORM_LINUX
 #include<sys/time.h>
-#endif // DEGA_TIME_LINUX
+#endif // DEGA_PLATFORM_LINUX
 
 namespace degawong {
 
@@ -16,28 +16,28 @@ namespace degawong {
 	class cDegaTime {
 	public:
 		cDegaTime() : pastTime(0) {
-#ifdef DEGA_TIME_WINDOW
+#ifdef DEGA_PLATFORM_WINDOW
 			QueryPerformanceFrequency(&timeFrequency);
 			QueryPerformanceCounter(&currTime);
 			QueryPerformanceCounter(&prevTime);
-#endif // DEGA_TIME_WINDOW
+#endif // DEGA_PLATFORM_WINDOW
 		}
 		virtual ~cDegaTime() {};
 
 	public:		
 		inline
 			void tic() {			
-#ifdef DEGA_TIME_WINDOW
+#ifdef DEGA_PLATFORM_WINDOW
 			QueryPerformanceCounter(&prevTime);
-#endif // DEGA_TIME_WINDOW
+#endif // DEGA_PLATFORM_WINDOW
 		}
 		inline
 			double toc() {
-#ifdef DEGA_TIME_WINDOW
+#ifdef DEGA_PLATFORM_WINDOW
 			QueryPerformanceCounter(&currTime);
 			pastTime = (currTime.QuadPart - prevTime.QuadPart)*1.0 / timeFrequency.QuadPart;
 			QueryPerformanceCounter(&prevTime);
-#endif // DEGA_TIME_WINDOW			
+#endif // DEGA_PLATFORM_WINDOW			
 			return pastTime;
 		}
 		inline
@@ -46,11 +46,11 @@ namespace degawong {
 		}
 	private:
 		double pastTime;
-#ifdef DEGA_TIME_WINDOW
+#ifdef DEGA_PLATFORM_WINDOW
 		LARGE_INTEGER currTime;		
 		LARGE_INTEGER prevTime;		
 		LARGE_INTEGER timeFrequency;
-#endif // DEGA_TIME_WINDOW
+#endif // DEGA_PLATFORM_WINDOW
 
 	};
 
