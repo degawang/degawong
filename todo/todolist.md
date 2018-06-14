@@ -18,3 +18,4 @@
 * <p align="left">add opengl support<p>
 * <p align="left">dram point circle on screen<p>
 * <p align="left">add multi thread operation<p>
+* <p align="left">add batch dealing operation<p>
