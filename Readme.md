@@ -44,5 +44,13 @@
 </font>
 
 * <p align="left">reslove link lib error in 3rdParty<p>
+* <p align="left">add to do list in home directory<p>
+
+<font size = 4 face="黑体">
+
+`<edit time 20180614>`
+
+</font>
+
+* <p align="left">add CMAKE_CXX_STANDARD 17<p>
 * <p align="left">addd to do list in home directory<p>
-* <p align="left"><p>
