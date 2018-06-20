@@ -1,6 +1,7 @@
 ﻿
 #include "iostream"
 #include "mat.h"
+#include "matrix.h"
 #include "cDegaGui.h"
 #include "cDegaTime.h"
 
@@ -27,10 +28,21 @@ int main()
 	}
 	//arma::mat A(5, 5, arma::fill::randu);
 	//cout << A << endl;
-	Mat img = imread("000.jpg");
-	cDegaGui dega;
-	dega.disImage(img, "imgoodboy");
-	cvWaitKey(0);
 
+	//Mat img = imread("000.jpg");
+	//cDegaGui dega;
+	//dega.disImage(img, "imgoodboy");
+	//cvWaitKey(0);
+
+	matrix<float> matrix_1(4, 4, 1);
+	matrix<float> matrix_2(4, 4, 1);
+	matrix_2.print();
+	{
+		matrix<float> matrix_3 = matrix_1 + matrix_2;
+		matrix_2 = matrix_3 + 4;
+		matrix_2 = matrix_3 + 5;
+		matrix_3.print();
+	}
+	matrix_2.print();
 	return 0;
 }

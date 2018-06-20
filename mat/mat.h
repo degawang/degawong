@@ -176,6 +176,7 @@ public:
 	mat<_T>& operator /=(const mat<_T>& _mat);
 
 	_T& operator()(const int& _width, const int& _height);
+
 public:
 	friend std::istream& operator >> (std::istream& is, mat<_T> &_mat) {
 		is >> _mat.data[0];
@@ -209,7 +210,7 @@ public:
 	}
 
 public:
-	/* mat memory allocator && deloocate */;
+	/* mat memory allocator && delocate */;
 	inline
 	void allocate() {		
 		try
@@ -230,9 +231,23 @@ public:
 	}
 	inline
 	void delocate() {
+		width = 0;		
+		height = 0;
+		value = 0;
+		chanels = 0;
+		subRegion = false;
 		delete refCount;
 		fastFree(data[0]);
-	}
+		pitch[0] = 0;
+		pitch[1] = 0;
+		pitch[2] = 0;
+		pitch[3] = 0;
+		data[0] = nullptr;
+		data[1] = nullptr;
+		data[2] = nullptr;
+		data[3] = nullptr;
+		refCount = nullptr;
+ 	}
 	template<typename _IT> static 
 	inline	_IT* alignPtr(_IT* ptr, int n = (int)sizeof(_IT)) {
 		return (_IT*)(((size_t)ptr + n - 1) & -n);
@@ -303,7 +318,7 @@ public:
 		return *this;
 	}
 public:
-	mat<_T> imCorp(int _start_row, int _start_col, int _width, int _height);
+	mat<_T> imCorp(int _start_width, int _start_height, int _width, int _height);
 public:	
 	void print() const;
 	void getVerson() const;
@@ -614,6 +629,12 @@ inline mat<_T>& mat<_T>::operator = (mat<_T>& _mat) {
 template<typename _T>
 inline mat<_T>& mat<_T>::operator = (mat<_T>&& _mat) {
 	if (this != &_mat) {
+
+		if (nullptr != data[0]) {
+			if (0 >= (--(*refCount))) {
+				delocate();
+			}
+		}
 
 		setData(_mat);
 		clearData(_mat);
@@ -1085,7 +1106,7 @@ inline void mat<_T>::clearData(mat<_T>& _mat) {
 
 template<typename _T>
 void mat<_T>::getVerson() const {
-	std::cout << "mat verson _0_0_1" << std::endl;
+	std::cout << "mat version _0_0_1" << std::endl;
 }
 
 
