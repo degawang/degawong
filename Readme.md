@@ -52,5 +52,13 @@
 
 </font>
 
-* <p align="left">add CMAKE_CXX_STANDARD 17<p>
+* <p align="left">add CMAKE_CXX_STANDARD 17 in CMakeLists<p>
 * <p align="left">addd to do list in home directory<p>
+
+<font size = 4 face="黑体">
+
+`<edit time 20180620>`
+
+</font>
+
+* <p align="left">edit cDegaGui class<p>

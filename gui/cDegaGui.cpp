@@ -3,9 +3,6 @@
 
 namespace degawong {
 
-cDegaGui::cDegaGui() {}
-
-
 cDegaGui::~cDegaGui() {}
 
 }
