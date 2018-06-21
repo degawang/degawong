@@ -68,4 +68,7 @@
 
 </font>
 
+* <p align="left">optimize and edit the CMakeLists<p>
 * <p align="left">add the linux time caculate function<p>
+* <p align="left">add local 3rdParty directory<p>
+* <p align="left">delete submodules dlib and armadillo in 3rdParty directory<p>

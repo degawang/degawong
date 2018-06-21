@@ -95,12 +95,11 @@ set(DIR_SUB_PROJ
     mat
 	time
 	exception
-	algorithm/deformation/mls
-	algorithm/baseBlend/laplaceBlend)	
+	algorithm)	
 
 IF(DEGA_3RD_PARTY)
 set(DIR_SUB_PROJ
-	3rdParty/armadillo
+	3rdParty
 	${DIR_SUB_PROJ})
 ENDIF(DEGA_3RD_PARTY)
 
@@ -117,9 +116,12 @@ SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
 SET_PROPERTY(TARGET gui PROPERTY FOLDER "Gui")
 SET_PROPERTY(TARGET mat PROPERTY FOLDER "Mat")
 SET_PROPERTY(TARGET time PROPERTY FOLDER "Time")
+# SET_PROPERTY(TARGET triangle PROPERTY FOLDER "Utils")
 SET_PROPERTY(TARGET mls PROPERTY FOLDER "Algorithm")
 SET_PROPERTY(TARGET laplaceBlend PROPERTY FOLDER "Algorithm")
 IF(DEGA_3RD_PARTY)
+	# SET_PROPERTY(TARGET dlib PROPERTY FOLDER "3rdParty")
+	SET_PROPERTY(TARGET Eigen PROPERTY FOLDER "3rdParty")
 	SET_PROPERTY(TARGET armadillo PROPERTY FOLDER "3rdParty")
 ENDIF(DEGA_3RD_PARTY)
 SET_PROPERTY(TARGET exception PROPERTY FOLDER "Exception")
@@ -130,15 +132,7 @@ set(DIR_ROOT_INCLUDE
 	base
 	time
 	exception
-	algorithm/deformation/mls
-	algorithm/baseBlend/laplaceBlend
 	${OpenCV_INCLUDE_DIRS})
-	
-IF(DEGA_3RD_PARTY)
-set(DIR_ROOT_INCLUDE
-	3rdParty/armadillo/include
-	${DIR_ROOT_INCLUDE})
-ENDIF(DEGA_3RD_PARTY)
 
 INCLUDE_DIRECTORIES(${DIR_ROOT_INCLUDE})
 
@@ -169,6 +163,7 @@ set(LIBS_DIR_ROOT
 	
 IF(DEGA_3RD_PARTY)
 set(LIBS_DIR_ROOT
+	Eigen
 	armadillo
 	${LIBS_DIR_ROOT})
 ENDIF(DEGA_3RD_PARTY)

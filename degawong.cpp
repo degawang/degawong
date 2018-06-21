@@ -7,6 +7,7 @@
 
 #ifdef DEGA_3RD_PARTY
 #include "armadillo"
+#include "Eigen/dense"
 #endif // DEGA_3RD_PARTY
 
 #include "opencv2/opencv.hpp"
@@ -82,8 +83,22 @@ void defaultMouseCallBack(int eventHandle, int location_x, int location_y, int f
 
 int main()
 {
-	//arma::mat A(5, 5, arma::fill::randu);
-	//cout << A << endl;
+	arma::mat A(5, 5, arma::fill::randu);
+	cout << A << endl;
+
+	Eigen::MatrixXd m(2, 2);
+	Eigen::Vector3d vec3d;
+	Eigen::Vector4d vec4d(1.0, 2.0, 3.0, 4.0);
+	Eigen::MatrixXd matrixXd;
+	Eigen::Matrix3d matrix3d;
+	m(0, 0) = 1;
+	m(0, 1) = 2;
+	m(1, 0) = m(0, 0) + 3;
+	m(1, 1) = m(0, 0) * m(0, 1);
+	std::cout << m << std::endl << std::endl;
+	m << -1.5, 2.4,
+		6.7, 2.0;
+	std::cout << m << std::endl << std::endl;
 
 	//mat<float> mat_1(4, 4, 1, 3);
 	//mat<float> mat_2(4, 4, 1, 6);
@@ -114,16 +129,13 @@ int main()
 	//gui.createTrackBar(300, 100, 700, on_ThreshChange, "brightness", "image", &(paralist[1]));
 	//gui.setNouseCallBack("image", img, defaultMouseCallBack);
 
-	cv::Mat mask = cv::imread("e:\\image\\mask.bmp", cv::IMREAD_GRAYSCALE);
-	cv::Mat image_1 = cv::imread("e:\\image\\001.bmp");
-	cv::Mat image_2 = cv::imread("e:\\image\\002.bmp");
-
-	//cv::seamlessClone()
-
-	degawong::cLaplaceBlending laplaceImage(image_1, image_2, mask, 1);
-	cv::Mat image = laplaceImage.blendExamples();
-	imshow("image", image);
-
+	/* still can not work */
+	//cv::Mat mask = cv::imread("e:\\image\\mask.bmp", cv::IMREAD_GRAYSCALE);
+	//cv::Mat image_1 = cv::imread("e:\\image\\001.bmp");
+	//cv::Mat image_2 = cv::imread("e:\\image\\002.bmp");
+	//degawong::cLaplaceBlending laplaceImage(image_1, image_2, mask, 1);
+	//cv::Mat image = laplaceImage.blendExamples();
+	//imshow("image", image);
 
 	waitKey(0);
 	return 0;
