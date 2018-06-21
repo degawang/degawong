@@ -34,3 +34,12 @@
 
 * <p align="left">care the pitch in move constructor and move set function<p>
 * <p align="left">generate lib and exe simulately in algorithm directory<p>
+
+<font size = 4 face="黑体">
+
+`<edit time 20180621>`
+
+</font>
+
+* <p align="left">can not transfer the mat into mouse callback function<p>
+* <p align="left">still not implenment the mouse scale function<p>

@@ -12,6 +12,7 @@
 - [X] TASK `[析构函数中，对引用计数的递减操作还有问题]`
 - [ ] TASK `[没有支持 vec3x 之类的对 mat 元素的操作]`
 - [X] TASK `[project 中的子项目对 main project 已包含头文件的调用]`
+- [X] TASK `[添加 laplace blending 算法]`
 
 </font>
 <p>

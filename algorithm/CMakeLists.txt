@@ -1,2 +1,3 @@
 
+ADD_SUBDIRECTORY(baseBlend)
 ADD_SUBDIRECTORY(deformation)

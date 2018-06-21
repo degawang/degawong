@@ -18,10 +18,10 @@ namespace degawong {
 		}
 
 		inline
-			void disImage(const cv::Mat _Mat, const std::string _winName = "untitled window")const {
-			if (!_Mat.empty()) {
-				cv::Mat image(900, 600,_Mat.type());
-				cv::resize(_Mat, image, image.size(), cv::INTER_CUBIC);
+			void disImage(const cv::Mat _image, const std::string _winName = "untitled window")const {
+			if (!_image.empty()) {
+				cv::Mat image(900, 600, _image.type());
+				cv::resize(_image, image, image.size(), cv::INTER_CUBIC);
 				cv::namedWindow(_winName, CV_WINDOW_NORMAL);
 				cv::imshow(_winName, image);
 			}
@@ -47,8 +47,14 @@ namespace degawong {
 		}
 
 		inline
-			void setNouseCallBack(std::string _winName, cv::Mat _Mat, cv::MouseCallback _callBackFunc) {
-			cv::setMouseCallback(_winName, _callBackFunc, &_Mat);
+			void setNouseCallBack(std::string _winName, cv::Mat _image, cv::MouseCallback _callBackFunc) {
+			//if (nullptr == _callBackFunc) {
+			//	cv::setMouseCallback(_winName, defaultMouseCallBack, &_image);
+			//}
+			//else {
+			//	cv::setMouseCallback(_winName, _callBackFunc, &_image);
+			//}
+			cv::setMouseCallback(_winName, _callBackFunc, &_image);
 		}
 
 	private:
@@ -60,7 +66,7 @@ namespace degawong {
 			cv::imshow("i am a good boy", image);
 		}
 
-		void defaultMouseCallBack(int eventHandle, int location_x, int location_y, int flags, void* inputPara) {
+		void defaultMouseCallBack(int eventHandle, int location_x, int location_y, int direction, void* inputPara) {
 			cv::Mat* image = (cv::Mat*)inputPara;
 			switch (eventHandle) {			
 				case CV_EVENT_MOUSEMOVE:
@@ -88,6 +94,25 @@ namespace degawong {
 					}
 					// drawing
 					//draw_box(image, box);
+				}break;
+				case CV_EVENT_MBUTTONDOWN:
+				{
+					/* mid wheel down */
+				}break;
+				case CV_EVENT_MOUSEWHEEL:
+				{
+					/* mid wheel move up */
+					if (0 < direction) {
+
+					}
+					/* mid wheel move down */
+					else {
+
+					}
+				}break;
+				case CV_EVENT_MBUTTONUP:
+				{
+					/* mid wheel up */
 				}break;
 			}
 		}

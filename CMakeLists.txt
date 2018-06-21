@@ -95,7 +95,8 @@ set(DIR_SUB_PROJ
     mat
 	time
 	exception
-	algorithm/deformation/mls)	
+	algorithm/deformation/mls
+	algorithm/baseBlend/laplaceBlend)	
 
 IF(DEGA_3RD_PARTY)
 set(DIR_SUB_PROJ
@@ -117,6 +118,7 @@ SET_PROPERTY(TARGET gui PROPERTY FOLDER "Gui")
 SET_PROPERTY(TARGET mat PROPERTY FOLDER "Mat")
 SET_PROPERTY(TARGET time PROPERTY FOLDER "Time")
 SET_PROPERTY(TARGET mls PROPERTY FOLDER "Algorithm")
+SET_PROPERTY(TARGET laplaceBlend PROPERTY FOLDER "Algorithm")
 IF(DEGA_3RD_PARTY)
 	SET_PROPERTY(TARGET armadillo PROPERTY FOLDER "3rdParty")
 ENDIF(DEGA_3RD_PARTY)
@@ -129,6 +131,7 @@ set(DIR_ROOT_INCLUDE
 	time
 	exception
 	algorithm/deformation/mls
+	algorithm/baseBlend/laplaceBlend
 	${OpenCV_INCLUDE_DIRS})
 	
 IF(DEGA_3RD_PARTY)
@@ -160,7 +163,8 @@ set(LIBS_DIR_ROOT
 	mat
 	time
     exception
-	mls	
+	mls
+	laplaceBlend
     ${OpenCV_LIBS})
 	
 IF(DEGA_3RD_PARTY)
