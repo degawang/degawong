@@ -1,6 +1,0 @@
-[submodule "3rdParty/armadillo"]
-	path = 3rdParty/armadillo
-	url = https://github.com/degawong/armadillo.git
-[submodule "3rdParty/dlib"]
-	path = 3rdParty/dlib
-	url = https://github.com/degawong/dlib
