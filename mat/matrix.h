@@ -41,10 +41,10 @@ public:
 					}
 				}
 			}
-			catch (const cParaExce& exce) {
-				std::cerr << exce.getExceReason() << std::endl;
-				throw;
-			}
+		}
+		catch (const cParaExce& exce) {
+			std::cerr << exce.getExceReason() << std::endl;
+			throw;
 		}
 	}
 	/* move constructor */
@@ -110,8 +110,8 @@ public:
 		return is;
 	}
 	friend std::ostream& operator << (std::ostream& os, const matrix<_T> &_matrix) {
-		try
-		{
+		try {
+
 			os << "degawong matrix version _0_0_1" << std::endl;
 			os << std::left << std::setw(10) << "matrix width : " << _matrix.width << std::endl;
 			os << std::left << std::setw(10) << "matrix height : " << _matrix.height << std::endl;
@@ -167,8 +167,8 @@ public:
 	/* matrix memory allocator && delocate */;
 	inline
 		void allocate() {
-		try
-		{
+		try {
+
 			refCount = new int(1);
 			if (nullptr == refCount) {
 				throw cMemoExce("out of memory");
@@ -201,8 +201,8 @@ public:
 		return (_IT*)(((size_t)ptr + n - 1) & -n);
 	}
 	void* fastMalloc(size_t size) {
-		try
-		{
+		try {
+
 			_T* tempData = (_T*)malloc(size + sizeof(void*) + DEGA_ALLIGN_NUM);
 			if (nullptr == tempData) {
 				throw cMemoExce("out of memory");
@@ -360,9 +360,7 @@ matrix<_T>& matrix<_T>::operator = (const _T& _value) {
 
 template<typename _T>
 matrix<_T> matrix<_T>::operator + (const _T& _value) {
-	try
-	{
-
+	try {
 		matrix<_T> _out_matrix(width, height, chanels);
 
 		for (int loop_i = 0; loop_i < height; loop_i++) {
@@ -487,8 +485,7 @@ matrix<_T>& matrix<_T>::operator = (matrix<_T>&& _matrix) {
 
 template<typename _T>
 matrix<_T> matrix<_T>::operator + (const matrix<_T>& _matrix) {
-	try
-	{
+	try {
 
 		matrix<_T> _out_matrix(_matrix.width, _matrix.height, _matrix.chanels);
 

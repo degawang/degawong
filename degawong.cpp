@@ -7,7 +7,7 @@
 
 #ifdef DEGA_3RD_PARTY
 #include "armadillo"
-#include "Eigen/dense"
+#include "Eigen/Dense"
 #endif // DEGA_3RD_PARTY
 
 #include "opencv2/opencv.hpp"

@@ -20,8 +20,8 @@ public:
 	/* matx memory allocator && delocate */;
 	inline
 		void allocate() {
-		try
-		{
+		try {
+
 			refCount = new int(1);
 			if (nullptr == refCount) {
 				throw cMemoExce("out of memory");
@@ -46,8 +46,8 @@ public:
 		return (_IT*)(((size_t)ptr + n - 1) & -n);
 	}
 	void* fastMalloc(size_t size) {
-		try
-		{
+		try {
+
 			_T* tempData = (_T*)malloc(size + sizeof(void*) + DEGA_ALLIGN_NUM);
 			if (nullptr == tempData) {
 				throw cMemoExce("out of memory");

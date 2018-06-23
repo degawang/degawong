@@ -213,8 +213,8 @@ public:
 	/* mat memory allocator && delocate */;
 	inline
 	void allocate() {		
-		try
-		{
+		try {
+
 			refCount = new int(1);
 			if (nullptr == refCount) {
 				throw cMemoExce("out of memory");
@@ -253,8 +253,8 @@ public:
 		return (_IT*)(((size_t)ptr + n - 1) & -n);
 	}
 	void* fastMalloc(size_t size) {
-		try
-		{
+		try {
+
 			_T* tempData = (_T*)malloc(size + sizeof(void*) + DEGA_ALLIGN_NUM);
 			if (nullptr == tempData) {
 				throw cMemoExce("out of memory");
@@ -496,8 +496,8 @@ mat<_T>& mat<_T>::operator = (const _T& _value) {
 
 template<typename _T>
 mat<_T> mat<_T>::operator + (const _T& _value) {
-	try
-	{
+	try {
+
 		//if ((chanels != _mat.chanels)||
 		//	(width != _mat.width) ||
 		//	(height != _mat.height) ||
@@ -645,8 +645,8 @@ inline mat<_T>& mat<_T>::operator = (mat<_T>&& _mat) {
 
 template<typename _T>
 mat<_T> mat<_T>::operator + (const mat<_T>& _mat) {
-	try
-	{
+	try {
+
 		//if ((chanels != _mat.chanels)||
 		//	(width != _mat.width) ||
 		//	(height != _mat.height) ||

@@ -7,8 +7,8 @@ namespace degawong {
 
 	class cDegaGui {
 	public:
-		cDegaGui(): barPosition(0){}
-		cDegaGui(std::string _winName, std::string _trackBarName) : barPosition(0) {};
+		cDegaGui(): barPosition(0), leftButtonDownFlag(false) {}
+		// cDegaGui(std::string _winName, std::string _trackBarName) : barPosition(0), leftButtonDownFlag(false) {};
 		virtual ~cDegaGui();
 
 	public:
@@ -120,7 +120,7 @@ namespace degawong {
 	private:
 		int barPosition;
 		cv::Rect rectToDraw;
-		bool leftButtonDownFlag = false;
+		bool leftButtonDownFlag;
 		//bool leftButtonDownFlag = false;
 
 	};
