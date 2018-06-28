@@ -50,6 +50,7 @@ public:
 			std::cerr << exce.getExceReason() << std::endl;
 			throw;
 		}
+#endif // DEGA_PLATFORM_WINDOW
 #ifdef DEGA_PLATFORM_LINUX
 	
 #endif // DEGA_PLATFORM_LINUX

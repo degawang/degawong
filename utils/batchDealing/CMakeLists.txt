@@ -32,6 +32,8 @@ endforeach()
 
 SOURCE_GROUP("Head Files" FILES ${FILE_BATCHDEALING_HEADERS}) 
 
+ADD_LIBRARY(recursiveFind cRecursiveFind.cpp ${FILE_BATCHDEALING_HEADERS})
+
 ADD_EXECUTABLE(batchDealing ${FILE_BATCHDEALING_SRCS} ${FILE_BATCHDEALING_HEADERS})
 
 set(LIBS_DIR_ROOT
@@ -43,4 +45,6 @@ set(LIBS_DIR_ROOT
 
 TARGET_LINK_LIBRARIES(batchDealing ${LIBS_DIR_ROOT})
 
+TARGET_LINK_LIBRARIES(recursiveFind ${LIBS_DIR_ROOT})
+target_include_directories(recursiveFind PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 MESSAGE(STATUS "============batchDealing===============")

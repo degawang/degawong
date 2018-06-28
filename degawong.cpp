@@ -4,6 +4,7 @@
 #include "matrix.h"
 #include "cDegaGui.h"
 #include "cDegaTime.h"
+#include "cRecursiveFind.h"
 
 #ifdef DEGA_3RD_PARTY
 #include "armadillo"
@@ -99,6 +100,13 @@ int main()
 	m << -1.5, 2.4,
 		6.7, 2.0;
 	std::cout << m << std::endl << std::endl;
+
+	cRecursiveFind recuFind;
+	recuFind.setDirName("e:\\image");
+	auto imageList = recuFind.getImageNameList();
+	for (int i = 0; i < imageList.size(); i++) {
+		std::cout << imageList.at(i).c_str() << std::endl;
+	}
 
 	//mat<float> mat_1(4, 4, 1, 3);
 	//mat<float> mat_2(4, 4, 1, 6);
