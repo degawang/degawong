@@ -91,3 +91,5 @@
 
 * <p align="left">add batch dealing project exe<p>
 * <p align="left">add video dealing project dir<p>
+* <p align="left">fix laplace class laplace blend<p>
+* <p align="left">add some predifine in base directory<p>

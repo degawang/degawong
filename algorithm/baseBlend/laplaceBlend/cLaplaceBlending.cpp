@@ -4,91 +4,91 @@
 
 namespace degawong {
 
-	cLaplaceBlending::cLaplaceBlending() {
-	}
-
-
 	cLaplaceBlending::~cLaplaceBlending() {
 	}
 
-	//////////////////////////////////////////////////////////////////////////
-	// gauss pyramid
+
+	/* gauss pyramid */
 	void cLaplaceBlending::buildGaussianPyramid() {
+		try {			
+			if (1 >= laplacePyramid_1.size()) {
+				throw cParaExce("unvaild parameter");
+			}
+			gaussPyramid.clear();
+			cv::Mat currentImage = blendMask;
+			gaussPyramid.push_back(currentImage);
+			for (int i = 0; i < nPyramidLayers; i++) {
+				cv::Mat _down;
+				pyrDown(currentImage, _down, laplacePyramid_1[i + 1].size());
+				gaussPyramid.push_back(_down);
+				currentImage = _down;
+			}
+		}
+		catch (const cMemoExce& exce) {
+			std::cerr << exce.getExceReason() << std::endl;
+			throw;
+		}
+	}
+	/* laplacian pyramid */
+	void cLaplaceBlending::buildLaplacianPyramid(
+		const cv::Mat& image,
+		std::vector<cv::Mat>& imagePyramid) {
 
-		assert(image_pyramid_1.size() > 0 && image_pyramid_2.size() > 0);
+		try {
+			if (1 >= nPyramidLayers) {
+				throw cParaExce("unvaild parameter");
+			}
+			imagePyramid.clear();
+			cv::Mat currenImage = image;
 
-		gauss_pyramid_mask.clear();
-		cv::Mat currentImage;
-		cv::cvtColor(blendMask, currentImage, CV_GRAY2BGR);
-		gauss_pyramid_mask.push_back(currentImage); 
+			for (int i = 0; i < nPyramidLayers; i++) {
 
-		currentImage = blendMask;
-		for (int i = 1; i < pyramidLayers + 1; i++) {
-			cv::Mat _down;
-			int para_size = image_pyramid_1.size();
-			if (para_size > i)
-				pyrDown(currentImage, _down, image_pyramid_1[i].size());
-			else
-				pyrDown(currentImage, _down, pyramid_top_1.size()); //lowest level
+				cv::Mat _down, _up;
+				cv::pyrDown(currenImage, _down);
+				cv::pyrUp(_down, _up, currenImage.size());
+				imagePyramid.push_back(currenImage - _up);
+				currenImage = _down;
 
-			cv::Mat down;
-			cvtColor(_down, down, CV_GRAY2BGR);
-			gauss_pyramid_mask.push_back(down);//add color blend mask into mask Pyramid
-			currentImage = _down;
+			}
+			imagePyramid.push_back(currenImage);
+		} 
+		catch (const cParaExce& exce) {
+			std::cerr << exce.getExceReason() << std::endl;
+			throw;
 		}
 	}
 
-	//////////////////////////////////////////////////////////////////////////
-	// laplacian pyramid
-	void cLaplaceBlending::buildLaplacianPyramid(const cv::Mat& image,
-		std::vector<cv::Mat_<cv::Vec3f> >& image_pyramid,
-		cv::Mat& pyramid_top) 
-	{
-		image_pyramid.clear();
-		cv::Mat currentImage = image;
-		for (int i = 0; i < pyramidLayers; i++) {
-			cv::Mat down, up;
-			cv::pyrDown(currentImage, down);
-			cv::pyrUp(down, up, currentImage.size());
-			cv::Mat pyramid = currentImage - up;
-			image_pyramid.push_back(pyramid);
-			currentImage = down;
-		}
-		currentImage.copyTo(pyramid_top);
-	}
-
-	//////////////////////////////////////////////////////////////////////////
-	// blend pyramid
+	/* blend pyramid */
 	void cLaplaceBlending::blendLaplacianPyramids() {
-		pyramid_top_res = pyramid_top_1.mul(gauss_pyramid_mask.back()) +
-			pyramid_top_2.mul(cv::Scalar(1.0, 1.0, 1.0) - gauss_pyramid_mask.back());
-		for (int i = 0; i < pyramidLayers; i++) {
-			cv::Mat A = image_pyramid_1[i].mul(gauss_pyramid_mask[i]);
-			cv::Mat antiMask = cv::Scalar(1.0, 1.0, 1.0) - gauss_pyramid_mask[i];
-			cv::Mat tempMat = image_pyramid_2[i];
-			cv::Mat B = tempMat.mul(antiMask);
-			cv::Mat_<cv::Vec3f> blendedImage = A + B;
+	
+		blendPyramid.clear();
 
-			image_pyramid_res.push_back(blendedImage);
+		for (int i = 0; i < nPyramidLayers + 1; i++) {
+			cv::Mat bgrMask;
+			cv::cvtColor(gaussPyramid.at(i), bgrMask, CV_GRAY2BGR);
+			cv::Mat A = laplacePyramid_1.at(i).mul(bgrMask);
+			cv::Mat antiMask = cv::Scalar(1.0, 1.0, 1.0) - bgrMask;
+			cv::Mat B = laplacePyramid_2.at(i).mul(antiMask);
+			blendPyramid.push_back(A + B);
 		}
 	}
 
-	//////////////////////////////////////////////////////////////////////////
-	// reconstruct blended image
-	cv::Mat_<cv::Vec3f> cLaplaceBlending::reconstructImageFromPyramid() {
-		cv::Mat currentImage = pyramid_top_res;
-		for (int i = pyramidLayers - 1; i >= 0; i--) {
-			cv::Mat up;
-			pyrUp(currentImage, up, image_pyramid_res[i].size());
-			currentImage = up + image_pyramid_res[i];
-		}
-		return currentImage;
-	}
-
-	cv::Mat cLaplaceBlending::blendExamples() {
+	/* reconstruct blended image */
+	cv::Mat cLaplaceBlending::reconstructImageFromPyramid() {
 		
-		buildLaplacianPyramid(image_1, image_pyramid_1, pyramid_top_1);
-		buildLaplacianPyramid(image_2, image_pyramid_2, pyramid_top_2);
+		cv::Mat currenImage = blendPyramid.at(nPyramidLayers);
+		for (int i = nPyramidLayers - 1; i >= 0; i--) {
+			cv::Mat up;			
+			pyrUp(currenImage, up, blendPyramid.at(i).size());
+			currenImage = up + blendPyramid.at(i);
+		}
+		return currenImage;
+	}
+
+	cv::Mat cLaplaceBlending::examples() {
+		
+		buildLaplacianPyramid(image_1, laplacePyramid_1);
+		buildLaplacianPyramid(image_2, laplacePyramid_2);
 		buildGaussianPyramid();
 		blendLaplacianPyramids();
 		return reconstructImageFromPyramid();

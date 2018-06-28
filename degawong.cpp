@@ -84,51 +84,32 @@ void defaultMouseCallBack(int eventHandle, int location_x, int location_y, int f
 
 int main()
 {
-	arma::mat A(5, 5, arma::fill::randu);
-	cout << A << endl;
+	/* armadillo */
+	//arma::mat A(5, 5, arma::fill::randu);
+	//cout << A << endl;
 
-	Eigen::MatrixXd m(2, 2);
-	Eigen::Vector3d vec3d;
-	Eigen::Vector4d vec4d(1.0, 2.0, 3.0, 4.0);
-	Eigen::MatrixXd matrixXd;
-	Eigen::Matrix3d matrix3d;
-	m(0, 0) = 1;
-	m(0, 1) = 2;
-	m(1, 0) = m(0, 0) + 3;
-	m(1, 1) = m(0, 0) * m(0, 1);
-	std::cout << m << std::endl << std::endl;
-	m << -1.5, 2.4,
-		6.7, 2.0;
-	std::cout << m << std::endl << std::endl;
+	/* eigen */
+	//Eigen::MatrixXd m(2, 2);
+	//Eigen::Vector4d vec4d(1.0, 2.0, 3.0, 4.0);
+	//Eigen::MatrixXd matrixXd;
+	//Eigen::Matrix3d matrix3d;
+	//m(0, 0) = 1;
+	//m(0, 1) = 2;
+	//m(1, 0) = m(0, 0) + 3;
+	//m(1, 1) = m(0, 0) * m(0, 1);
+	//m << -1.5, 2.4,
+	//	6.7, 2.0;
+	//std::cout << m << std::endl << std::endl;
 
-	cRecursiveFind recuFind;
-	recuFind.setDirName("e:\\image");
-	auto imageList = recuFind.getImageNameList();
-	for (int i = 0; i < imageList.size(); i++) {
-		std::cout << imageList.at(i).c_str() << std::endl;
-	}
-
-	//mat<float> mat_1(4, 4, 1, 3);
-	//mat<float> mat_2(4, 4, 1, 6);
-	//mat_2.print();
-	//{
-	//	mat<float> mat_3 = mat_1 + mat_2;
-	//	mat_2 = mat_3 + 4;
-	//	mat_2 = mat_3 + 5;
-	//	mat_3.print();
+	/* recursive finding */
+	//cRecursiveFind recuFind;
+	//recuFind.setDirName("e:\\image");
+	//auto imageList = recuFind.getImageNameList();
+	//for (int i = 0; i < imageList.size(); i++) {
+	//	std::cout << imageList.at(i).c_str() << std::endl;
 	//}
-
-	//matrix<float> matrix_1(4, 4, 1);
-	//matrix<float> matrix_2(4, 4, 1);
-	//matrix_2.print();
-	//{
-	//	matrix<float> matrix_3 = matrix_1 + matrix_2;
-	//	matrix_2 = matrix_3 + 4;
-	//	matrix_2 = matrix_3 + 5;
-	//	matrix_3.print();
-	//}
-	//matrix_2.print();
 	
+	/* dega gui */
 	//cDegaGui gui;
 	//int paralist[2] = { 0, 0 };
 	//Mat img = imread("e:\\image\\001.bmp");
@@ -138,12 +119,17 @@ int main()
 	//gui.setNouseCallBack("image", img, defaultMouseCallBack);
 
 	/* still can not work */
-	//cv::Mat mask = cv::imread("e:\\image\\mask.bmp", cv::IMREAD_GRAYSCALE);
-	//cv::Mat image_1 = cv::imread("e:\\image\\001.bmp");
-	//cv::Mat image_2 = cv::imread("e:\\image\\002.bmp");
-	//degawong::cLaplaceBlending laplaceImage(image_1, image_2, mask, 1);
-	//cv::Mat image = laplaceImage.blendExamples();
+	cv::Mat mask = cv::imread("e:\\image\\mask.bmp", cv::IMREAD_GRAYSCALE);
+	cv::Mat image_1 = cv::imread("e:\\image\\001.bmp");
+	cv::Mat image_2 = cv::imread("e:\\image\\002.bmp");
+	degawong::cLaplaceBlending laplaceImage(image_1, image_2, mask, 3);
+	cv::Mat image = laplaceImage.examples();
 	//imshow("image", image);
+
+	cDegaGui gui;
+	gui.disImage(image, "image");
+
+	imwrite("e:\\image\\00000.bmp", image);
 
 	waitKey(0);
 	return 0;

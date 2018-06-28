@@ -44,6 +44,7 @@ public:
 					imageNameList.push_back(imageInfo.name);
 				}
 			} while (0 == _findnext(imageHandle, &imageInfo));
+
 			return imageNameList;
 		} 
 		catch (const cDegaException& exce) {
