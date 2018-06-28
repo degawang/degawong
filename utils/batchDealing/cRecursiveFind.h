@@ -2,7 +2,17 @@
 
 #include "vector"
 #include "iostream"
+#include "cMemoExce.h"
+#include "cParaExce.h"
+#include "cDegaException.h"
+
+#ifdef DEGA_PLATFORM_WINDOW
 #include "corecrt_io.h"
+#endif // DEGA_PLATFORM_WINDOW
+#ifdef DEGA_PLATFORM_LINUX
+#include<sys/time.h>
+#endif // DEGA_PLATFORM_LINUX
+
 
 namespace degawong {
 
@@ -14,6 +24,7 @@ public:
 public:
 	inline std::vector<std::string> recursiveFineImage(std::string dirName, std::vector<std::string>imageNameList) {
 
+#ifdef DEGA_PLATFORM_WINDOW
 		try {
 			_finddata_t imageInfo;
 			std::string findTarget = dirName + "\\*";
@@ -21,7 +32,7 @@ public:
 
 			do {
 				if (-1L == imageHandle) {
-					throw;
+					throw cDegaException("error : can not match the folder path");
 				}
 				if (imageInfo.attrib & _A_SUBDIR) {
 					if ((strcmp(imageInfo.name, ".") != 0) && (strcmp(imageInfo.name, "..") != 0)) {
@@ -33,10 +44,15 @@ public:
 					imageNameList.push_back(imageInfo.name);
 				}
 			} while (0 == _findnext(imageHandle, &imageInfo));
-		} catch (...) {
-			std::cerr << "can not match the folder path" << std::endl;
+			return imageNameList;
+		} 
+		catch (const cDegaException& exce) {
+			std::cerr << exce.getExceReason() << std::endl;
+			throw;
 		}
-		return imageNameList;
+#ifdef DEGA_PLATFORM_LINUX
+	
+#endif // DEGA_PLATFORM_LINUX
 	}
 
 public: 

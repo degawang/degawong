@@ -82,3 +82,12 @@
 * <p align="left">edit the code style<p>
 * <p align="left">edit linux cDegaTime function<p>
 * <p align="left">fix some bugs in mat and matrix class<p>
+
+<font size = 4 face="黑体">
+
+`<edit time 20180628>`
+
+</font>
+
+* <p align="left">add batch dealing project exe<p>
+* <p align="left">add video dealing project dir<p>
