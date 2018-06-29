@@ -93,3 +93,13 @@
 * <p align="left">add video dealing project dir<p>
 * <p align="left">fix laplace class laplace blend<p>
 * <p align="left">add some predifine in base directory<p>
+
+<font size = 4 face="黑体">
+
+`<edit time 20180629>`
+
+</font>
+
+* <p align="left">edit dega base directory<p>
+* <p align="left">add class cFacelandmark dir<p>
+* <p align="left">add submodule dlib 3rdParty library<p>

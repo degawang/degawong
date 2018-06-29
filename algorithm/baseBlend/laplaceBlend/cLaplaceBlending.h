@@ -35,7 +35,7 @@ public:
 				((log(minBorder) / log(2) - 4.0) > 1.0 ? (log(minBorder) / log(2) - 4.0) : 1.0);
 		} 
 		catch (const cParaExce& exce) {
-			std::cerr << exce.getExceReason() << std::endl;
+			std::cerr << exce.what() << std::endl;
 			throw;
 		}
 	};

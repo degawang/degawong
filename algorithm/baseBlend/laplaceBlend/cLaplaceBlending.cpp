@@ -25,7 +25,7 @@ namespace degawong {
 			}
 		}
 		catch (const cMemoExce& exce) {
-			std::cerr << exce.getExceReason() << std::endl;
+			std::cerr << exce.what() << std::endl;
 			throw;
 		}
 	}
@@ -53,7 +53,7 @@ namespace degawong {
 			imagePyramid.push_back(currenImage);
 		} 
 		catch (const cParaExce& exce) {
-			std::cerr << exce.getExceReason() << std::endl;
+			std::cerr << exce.what() << std::endl;
 			throw;
 		}
 	}

@@ -15,7 +15,7 @@ public:
 public:
 
 	inline
-		std::string getExceReason() const {
+		std::string what() const {
 		return exceReason;
 	}
 

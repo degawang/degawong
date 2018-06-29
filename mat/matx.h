@@ -32,7 +32,7 @@ public:
 			}
 		}
 		catch (const cMemoExce& exce) {
-			std::cerr << exce.getExceReason() << std::endl;
+			std::cerr << exce.what() << std::endl;
 			throw;
 		}
 	}
@@ -57,7 +57,7 @@ public:
 			return alligningData;
 		}
 		catch (const cMemoExce& exce) {
-			std::cerr << exce.getExceReason() << std::endl;
+			std::cerr << exce.what() << std::endl;
 			throw;
 		}
 	}

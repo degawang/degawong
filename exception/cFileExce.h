@@ -17,12 +17,12 @@ public:
 		return is;
 	};
 	friend std::ostream& operator << (std::ostream& os, const cFileExce &exce) {
-		os << exce.getExceReason() << std::endl;
+		os << exce.what() << std::endl;
 		return os;
 	};
 public:
 	inline
-		std::string getExceReason() const {
+		std::string what() const {
 		return exceReason;
 	}
 

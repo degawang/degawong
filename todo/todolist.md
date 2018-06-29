@@ -43,3 +43,13 @@
 
 * <p align="left">can not transfer the mat into mouse callback function<p>
 * <p align="left">still not implenment the mouse scale function<p>
+
+<font size = 4 face="黑体">
+
+`<edit time 20180629>`
+
+</font>
+
+* <p align="left">add video dealing project<p>
+* <p align="left">dlib face outline still cannot work<p>
+* <p align="left">segment 3rdParty into small project in cmakelist such as dlib ...<p>

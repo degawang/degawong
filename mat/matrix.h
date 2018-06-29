@@ -43,7 +43,7 @@ public:
 			}
 		}
 		catch (const cParaExce& exce) {
-			std::cerr << exce.getExceReason() << std::endl;
+			std::cerr << exce.what() << std::endl;
 			throw;
 		}
 	}
@@ -55,7 +55,7 @@ public:
 			clearData(_matrix);
 		}
 		catch (const cParaExce& exce) {
-			std::cerr << exce.getExceReason() << std::endl;
+			std::cerr << exce.what() << std::endl;
 			throw;
 		}
 	}
@@ -92,7 +92,7 @@ public:
 
 		}
 		catch (const cParaExce& exce) {
-			std::cerr << exce.getExceReason() << std::endl;
+			std::cerr << exce.what() << std::endl;
 		}
 	}
 
@@ -127,7 +127,7 @@ public:
 		}
 		catch (cParaExce &exce)
 		{
-			std::cerr << exce.getExceReason() << std::endl;
+			std::cerr << exce.what() << std::endl;
 			throw;
 		}
 	}
@@ -179,7 +179,7 @@ public:
 			}
 		}
 		catch (const cMemoExce& exce) {
-			std::cerr << exce.getExceReason() << std::endl;
+			std::cerr << exce.what() << std::endl;
 			throw;
 		}
 	}
@@ -212,7 +212,7 @@ public:
 			return alligningData;
 		}
 		catch (const cMemoExce& exce) {
-			std::cerr << exce.getExceReason() << std::endl;
+			std::cerr << exce.what() << std::endl;
 			throw;
 		}
 	}
@@ -277,7 +277,7 @@ matrix<_T>& matrix<_T>::operator ++ () {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 	}
 }
 
@@ -296,7 +296,7 @@ matrix<_T>& matrix<_T>::operator -- () {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 	}
 }
 
@@ -317,7 +317,7 @@ matrix<_T> matrix<_T>::operator ++ (int) {
 		return _out_matrix;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -339,7 +339,7 @@ matrix<_T> matrix<_T>::operator -- (int) {
 		return _out_matrix;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -375,7 +375,7 @@ matrix<_T> matrix<_T>::operator + (const _T& _value) {
 	}
 	catch (const cMemoExce& exce)
 	{
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -396,7 +396,7 @@ matrix<_T> matrix<_T>::operator - (const _T& _value) {
 		return _out_matrix;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -418,7 +418,7 @@ matrix<_T> matrix<_T>::operator * (const _T& _value) {
 		return _out_matrix;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -443,7 +443,7 @@ matrix<_T> matrix<_T>::operator / (const _T& _value) {
 		return _out_matrix;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -502,7 +502,7 @@ matrix<_T> matrix<_T>::operator + (const matrix<_T>& _matrix) {
 	}
 	catch (const cMemoExce& exce)
 	{
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -525,7 +525,7 @@ matrix<_T> matrix<_T>::operator - (const matrix<_T>& _matrix) {
 		return _out_matrix;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -547,7 +547,7 @@ matrix<_T> matrix<_T>::operator * (const matrix<_T>& _matrix) {
 		return _out_matrix;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -570,7 +570,7 @@ matrix<_T> matrix<_T>::operator / (const matrix<_T>& _matrix) {
 		return _out_matrix;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -590,7 +590,7 @@ matrix<_T>& matrix<_T>::operator += (const _T& _value) {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -610,7 +610,7 @@ matrix<_T>& matrix<_T>::operator -= (const _T& _value) {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -630,7 +630,7 @@ matrix<_T>& matrix<_T>::operator *= (const _T& _value) {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -653,7 +653,7 @@ matrix<_T>& matrix<_T>::operator /= (const _T& _value) {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -678,7 +678,7 @@ matrix<_T>& matrix<_T>::operator += (const matrix<_T>& _matrix) {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -703,7 +703,7 @@ matrix<_T>& matrix<_T>::operator -= (const matrix<_T>& _matrix) {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -728,7 +728,7 @@ matrix<_T>& matrix<_T>::operator *= (const matrix<_T>& _matrix) {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -750,7 +750,7 @@ matrix<_T>& matrix<_T>::operator /= (const matrix<_T>& _matrix) {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -806,7 +806,7 @@ void matrix<_T>::save(std::string pathName, unsigned char _Mode) const {
 		out.close();
 	}
 	catch (cFileExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }

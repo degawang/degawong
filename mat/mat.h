@@ -62,7 +62,7 @@ public:
 			}
 		}
 		catch (const cParaExce& exce) {
-			std::cerr << exce.getExceReason() << std::endl;
+			std::cerr << exce.what() << std::endl;
 			throw;
 		}
 	}
@@ -77,7 +77,7 @@ public:
 
 		}
 		catch (const cParaExce& exce) {
-			std::cerr << exce.getExceReason() << std::endl;
+			std::cerr << exce.what() << std::endl;
 			throw;
 		}
 	}
@@ -133,7 +133,7 @@ public:
 
 		}
 		catch (const cParaExce& exce) {
-			std::cerr << exce.getExceReason() << std::endl;
+			std::cerr << exce.what() << std::endl;
 		}
 	}
 
@@ -204,7 +204,7 @@ public:
 		}
 		catch (cParaExce &exce)
 		{
-			std::cerr << exce.getExceReason() << std::endl;
+			std::cerr << exce.what() << std::endl;
 			throw;
 		}
 	}
@@ -225,7 +225,7 @@ public:
 			}
 		}
 		catch (const cMemoExce& exce) {
-			std::cerr << exce.getExceReason() << std::endl;
+			std::cerr << exce.what() << std::endl;
 			throw;
 		}
 	}
@@ -264,7 +264,7 @@ public:
 			return alligningData;
 		}
 		catch (const cMemoExce& exce) {
-			std::cerr << exce.getExceReason() << std::endl;
+			std::cerr << exce.what() << std::endl;
 			throw;
 		}
 	}
@@ -388,7 +388,7 @@ mat<_T>& mat<_T>::operator ++ () {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 	}
 }
 
@@ -415,7 +415,7 @@ mat<_T>& mat<_T>::operator -- () {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -445,7 +445,7 @@ mat<_T> mat<_T>::operator ++ (int) {
 		return _out_mat;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -475,7 +475,7 @@ mat<_T> mat<_T>::operator -- (int) {
 		return _out_mat;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -521,7 +521,7 @@ mat<_T> mat<_T>::operator + (const _T& _value) {
 	}
 	catch (const cMemoExce& exce)
 	{
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -549,7 +549,7 @@ mat<_T> mat<_T>::operator - (const _T& _value) {
 		return _out_mat;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -578,7 +578,7 @@ mat<_T> mat<_T>::operator * (const _T& _value) {
 		return _out_mat;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -603,7 +603,7 @@ mat<_T> mat<_T>::operator / (const _T& _value) {
 		return _out_mat;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -670,7 +670,7 @@ mat<_T> mat<_T>::operator + (const mat<_T>& _mat) {
 	}
 	catch (const cMemoExce& exce)
 	{
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -700,7 +700,7 @@ mat<_T> mat<_T>::operator - (const mat<_T>& _mat) {
 		return _out_mat;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -730,7 +730,7 @@ mat<_T> mat<_T>::operator * (const mat<_T>& _mat) {
 		return _out_mat;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -760,7 +760,7 @@ mat<_T> mat<_T>::operator / (const mat<_T>& _mat) {
 		return _out_mat;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -788,7 +788,7 @@ mat<_T>& mat<_T>::operator += (const _T& _value) {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -816,7 +816,7 @@ mat<_T>& mat<_T>::operator -= (const _T& _value) {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -844,7 +844,7 @@ mat<_T>& mat<_T>::operator *= (const _T& _value) {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -867,7 +867,7 @@ mat<_T>& mat<_T>::operator /= (const _T& _value) {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -895,7 +895,7 @@ mat<_T>& mat<_T>::operator += (const mat<_T>& _mat) {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -923,7 +923,7 @@ mat<_T>& mat<_T>::operator -= (const mat<_T>& _mat) {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -951,7 +951,7 @@ mat<_T>& mat<_T>::operator *= (const mat<_T>& _mat) {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -973,7 +973,7 @@ mat<_T>& mat<_T>::operator /= (const mat<_T>& _mat) {
 		return *this;
 	}
 	catch (const cMemoExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }
@@ -1055,7 +1055,7 @@ void mat<_T>::save(std::string pathName, unsigned char _Mode) const {
 		out.close();
 	}
 	catch (cFileExce& exce) {
-		std::cerr << exce.getExceReason() << std::endl;
+		std::cerr << exce.what() << std::endl;
 		throw;
 	}
 }

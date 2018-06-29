@@ -48,7 +48,7 @@ public:
 			return imageNameList;
 		} 
 		catch (const cDegaException& exce) {
-			std::cerr << exce.getExceReason() << std::endl;
+			std::cerr << exce.what() << std::endl;
 			throw;
 		}
 #endif // DEGA_PLATFORM_WINDOW

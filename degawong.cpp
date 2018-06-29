@@ -1,14 +1,22 @@
 ﻿
-#include "iostream"
 #include "mat.h"
 #include "matrix.h"
 #include "cDegaGui.h"
 #include "cDegaTime.h"
+#include "degaPredefine.h"
 #include "cRecursiveFind.h"
 
-#ifdef DEGA_3RD_PARTY
 #include "armadillo"
 #include "Eigen/Dense"
+
+#include "iostream"
+
+#ifdef DEGA_3RD_PARTY
+#include <dlib/image_io.h>
+#include <dlib/gui_widgets.h>
+#include <dlib/image_processing/frontal_face_detector.h>
+
+using namespace dlib;
 #endif // DEGA_3RD_PARTY
 
 #include "opencv2/opencv.hpp"
@@ -118,19 +126,29 @@ int main()
 	//gui.createTrackBar(300, 100, 700, on_ThreshChange, "brightness", "image", &(paralist[1]));
 	//gui.setNouseCallBack("image", img, defaultMouseCallBack);
 
-	/* still can not work */
-	cv::Mat mask = cv::imread("e:\\image\\mask.bmp", cv::IMREAD_GRAYSCALE);
-	cv::Mat image_1 = cv::imread("e:\\image\\001.bmp");
-	cv::Mat image_2 = cv::imread("e:\\image\\002.bmp");
-	degawong::cLaplaceBlending laplaceImage(image_1, image_2, mask, 3);
-	cv::Mat image = laplaceImage.examples();
-	//imshow("image", image);
+	/* it works well in 64 bit system, uncertain work or not in win 32 */
+	//cv::Mat mask = cv::imread("e:\\image\\mask.bmp", cv::IMREAD_GRAYSCALE);
+	//cv::Mat image_1 = cv::imread("e:\\image\\001.bmp");
+	//cv::Mat image_2 = cv::imread("e:\\image\\002.bmp");
+	//degawong::cLaplaceBlending laplaceImage(image_1, image_2, mask, 3);
+	//cv::Mat image = laplaceImage.examples();
 
-	cDegaGui gui;
-	gui.disImage(image, "image");
+	//cDegaGui gui;
+	//gui.disImage(image, "image");
 
-	imwrite("e:\\image\\00000.bmp", image);
+	/* dlib */
+	//dlib::frontal_face_detector detector = get_frontal_face_detector();
+	//dlib::image_window win;
+	//dlib::array2d<unsigned char> img;
+	//dlib::load_image(img, "e:\\image\\000.jpg");
+	//dlib::pyramid_up(img);
+	//std::vector<dlib::rectangle> dets = detector(img);
+	//std::cout << "Number of faces detected: " << dets.size() << std::endl;
+	//win.clear_overlay();
+	//win.set_image(img);
+	//win.add_overlay(dets, rgb_pixel(255, 0, 0));
 
+	system("pause");
 	waitKey(0);
 	return 0;
 }
