@@ -29,10 +29,14 @@ public:
 			case DEGA_FILTER_EDGE:{
 				return edgeLight();
 			}
+			case DEGA_FILTER_SHARP:{
+				return imageSharp();
+			}
 		}
 	}
 private:
 	cv::Mat edgeLight();
+	cv::Mat imageSharp();
 private:
 	cv::Mat image;
 	int filterModel;

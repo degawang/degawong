@@ -14,3 +14,4 @@
 #define 	DEGA_IMPORT_DLL 	_declspec(dllimport)
 
 #define     DEGA_FILTER_EDGE    0X00
+#define     DEGA_FILTER_SHARP   0X01

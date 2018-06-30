@@ -39,4 +39,21 @@ cv::Mat cImageFilter::edgeLight(){
     return cv::Mat(outputMat);
 }
 
+/* image sharp fliter */
+cv::Mat cImageFilter::imageSharp() {
+
+    double sigma = 3;
+    int threshold = 1;
+    float amount = 50 / 100.0f;
+
+    cv::Mat imgBlurred;
+    cv::Mat outputMat(image.size(),image.type());
+    GaussianBlur(image, imgBlurred, cv::Size(7,7), sigma, sigma);
+
+    cv::Mat lowContrastMask = abs(image - imgBlurred) < threshold;
+    outputMat = image * (1 + amount) + imgBlurred * (-amount);
+    image.copyTo(outputMat, lowContrastMask);
+
+    return cv::Mat(outputMat);
+}
 }

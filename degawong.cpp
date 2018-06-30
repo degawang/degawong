@@ -155,9 +155,9 @@ int main()
 	cv::Mat image = imread("./input/001.jpg");
 	degawong::cImageFilter imageFilter;
 	imageFilter.setImageData(image);
-	imageFilter.setFilterModel(DEGA_FILTER_EDGE);
+	imageFilter.setFilterModel(DEGA_FILTER_SHARP);
 	cv::Mat outputImage = imageFilter.getFilterImage();
-	imshow("image filter edge light : ",outputImage);
+	imshow("image filter image sharp : ",outputImage);
 
 	waitKey(0);
 	return 0;
