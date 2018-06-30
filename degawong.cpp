@@ -127,14 +127,15 @@ int main()
 	//gui.setNouseCallBack("image", img, defaultMouseCallBack);
 
 	/* it works well in 64 bit system, uncertain work or not in win 32 */
-	//cv::Mat mask = cv::imread("e:\\image\\mask.bmp", cv::IMREAD_GRAYSCALE);
-	//cv::Mat image_1 = cv::imread("e:\\image\\001.bmp");
-	//cv::Mat image_2 = cv::imread("e:\\image\\002.bmp");
-	//degawong::cLaplaceBlending laplaceImage(image_1, image_2, mask, 3);
-	//cv::Mat image = laplaceImage.examples();
+	cv::Mat mask = cv::imread("./input/mask.bmp", cv::IMREAD_GRAYSCALE);
+	cv::Mat image_1 = cv::imread("./input/001.jpg");
+	cv::Mat image_2 = cv::imread("./input/002.jpg");
+	cout<<image_1.size()<<endl<<image_2.size()<<endl;
+	degawong::cLaplaceBlending laplaceImage(image_1, image_2, mask, 3);
+	cv::Mat image = laplaceImage.examples();
 
-	//cDegaGui gui;
-	//gui.disImage(image, "image");
+	cDegaGui gui;
+	gui.disImage(image, "image");
 
 	/* dlib */
 	//dlib::frontal_face_detector detector = get_frontal_face_detector();
