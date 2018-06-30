@@ -2,11 +2,11 @@
 
 /* plantform base */
 #ifdef __GNUC__
-#define DEGA_FORCE_INLINE               __attribute__((__always_inline__)) inline
+#define     DEGA_FORCE_INLINE               __attribute__((__always_inline__)) inline
 #elif defined(MSVC)
-#define DEGA_FORCE_INLINE               __forceinline
+#define     DEGA_FORCE_INLINE               __forceinline
 #else
-#define DEGA_FORCE_INLINE
+#define     DEGA_FORCE_INLINE
 #endif
 
 /* cpp base */
