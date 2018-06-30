@@ -48,4 +48,4 @@ TARGET_LINK_LIBRARIES(batchDealing ${LIBS_DIR_ROOT})
 
 TARGET_LINK_LIBRARIES(recursiveFind ${LIBS_DIR_ROOT})
 target_include_directories(recursiveFind PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-MESSAGE(STATUS "============batchDealing===============")
+MESSAGE(STATUS "=============batchDealing=============")

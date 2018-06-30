@@ -12,11 +12,12 @@
 #include "iostream"
 
 #ifdef DEGA_3RD_PARTY
+#ifdef DEGA_3RD_PARTY_DLIB
 #include <dlib/image_io.h>
 #include <dlib/gui_widgets.h>
 #include <dlib/image_processing/frontal_face_detector.h>
-
 using namespace dlib;
+#endif // DEGA_3RD_PARTY_DLIB
 #endif // DEGA_3RD_PARTY
 
 #include "opencv2/opencv.hpp"
@@ -136,6 +137,7 @@ int main()
 
 	cDegaGui gui;
 	gui.disImage(image, "image");
+	imwrite("./output/blendResult.bmp", image);
 
 	/* dlib */
 	//dlib::frontal_face_detector detector = get_frontal_face_detector();

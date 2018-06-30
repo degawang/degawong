@@ -1,7 +1,4 @@
-#
-<font size = 5 face="黑体">
-<center>mat release note<center>
-</font>
+#<font size = 5 face="黑体"><center>mat release note<center></font>
 
 <font size = 4 face="黑体"><p align="middle">degawong<p></font>
 
@@ -103,3 +100,13 @@
 * <p align="left">edit dega base directory<p>
 * <p align="left">add class cFacelandmark dir<p>
 * <p align="left">add submodule dlib 3rdParty library<p>
+
+<font size = 4 face="黑体">
+
+`<edit time 20180630>`
+
+</font>
+
+* <p align="left">add sub 3rdParty defines such as dlib ...<p>
+* <p align="left">add input output dir include images needed<p>
+* <p align="left">sub module can not work,still need to fix it<p>
