@@ -1,5 +1,5 @@
 
-PROJECT(faceLandmark)
+PROJECT(faceLandmarkDemo)
 
 CMAKE_MINIMUM_REQUIRED (VERSION 2.5)
 

@@ -108,5 +108,6 @@
 </font>
 
 * <p align="left">add sub 3rdParty defines such as dlib ...<p>
+* <p align="left">add image filter such as edge light in utils<p>
 * <p align="left">add input output dir include images needed<p>
 * <p align="left">sub module can not work,still need to fix it<p>

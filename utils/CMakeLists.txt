@@ -1,4 +1,5 @@
 
+ADD_SUBDIRECTORY(imageFilter)
 ADD_SUBDIRECTORY(batchDealing)
 # ADD_SUBDIRECTORY(videoDealing)
 
