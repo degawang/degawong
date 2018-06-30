@@ -53,3 +53,14 @@
 * <p align="left">add video dealing project<p>
 * <p align="left">dlib face outline still cannot work<p>
 * <p align="left">segment 3rdParty into small project in cmakelist such as dlib ...<p>
+
+<font size = 4 face="黑体">
+
+`<edit time 20180701>`
+
+</font>
+
+* <p align="left">directory faceLandmark need to be renamed<p>
+
+
+

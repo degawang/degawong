@@ -56,4 +56,73 @@ cv::Mat cImageFilter::imageSharp() {
 
     return cv::Mat(outputMat);
 }
+
+/* image spherize fliter */
+cv::Mat cImageFilter::spherizeWrap() {
+
+    cv::Mat outputMat(image.size(),image.type());
+
+    int width = image.cols;
+    int height = image.rows;
+
+    float R;
+    float e;
+    float a,b;
+    float alpha = 0.75f;
+
+    a = height / 2.0f; b = width / 2.0f;
+    e = (float)width / (float)height;
+    R = std::min(a,b);
+
+    cv::Point Center(width / 2, height / 2);
+
+    float radius,Dis,new_x, new_y;
+    float p,q,x1,y1,x0,y0;
+    float theta;
+
+    cv::Mat_<cv::Vec3b>::iterator itend = image.end<cv::Vec3b>();
+    cv::Mat_<cv::Vec3b>::iterator itstart = image.begin<cv::Vec3b>();
+    cv::Mat_<cv::Vec3b>::iterator itOutput = image.begin<cv::Vec3b>();
+
+    for (int y = 0; y < height; y++){
+        for (int x = 0; x < width; x++){
+            y0 = Center.y-y;
+            x0 = x-Center.x;
+            Dis = x0*x0+y0*y0;
+            if(Dis < R*R){
+                theta = atan(y0 / (x0 + 0.00001f));
+                if(x0 < 0)  theta = theta + DEGA_CONSTANT_PI;
+                radius = asin(sqrt(Dis) / R)* R / (DEGA_CONSTANT_PI / 2);
+                radius = (sqrt(Dis) - radius) * (1 - alpha) + radius;
+                new_x = radius * cos(theta);
+                new_y = radius * sin(theta);
+                new_x = Center.x + new_x;
+                new_y = Center.y - new_y;
+
+                if(new_x < 0)   new_x = 0;
+                if(new_x >= width - 1)  new_x = width - 2;
+                if(new_y < 0)   new_y = 0;
+                if(new_y >= height - 1) new_y = height - 2;
+
+                x1 = (int)new_x;
+                y1 = (int)new_y;
+
+                p = new_x - x1;
+                q = new_y - y1;
+
+                for (int k = 0; k < image.channels(); k++){
+                    outputMat.at<cv::Vec3b>(y, x)[k]=(1 - p) * (1 - q) * image.at<cv::Vec3b>(y1, x1)[k]+
+                                                       (p) * (1 - q) * image.at<cv::Vec3b>(y1,x1 + 1)[k]+
+                                                       (1-p) * (q) * image.at<cv::Vec3b>(y1 + 1,x1)[k]+
+                                                       (p) * (q) * image.at<cv::Vec3b>(y1 + 1,x1 + 1)[k];
+                }
+
+            }
+
+        }
+    }
+
+    return cv::Mat(outputMat);
+}
+
 }

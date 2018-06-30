@@ -1,6 +1,7 @@
 
+ADD_SUBDIRECTORY(imageMerge)
 ADD_SUBDIRECTORY(imageFilter)
-ADD_SUBDIRECTORY(batchDealing)
+ADD_SUBDIRECTORY(recursiveFind)
 # ADD_SUBDIRECTORY(videoDealing)
 
 IF(DEGA_3RD_PARTY)

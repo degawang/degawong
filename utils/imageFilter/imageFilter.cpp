@@ -13,12 +13,12 @@ using namespace std;
 int main(int argc, char** argv)
 {  
     try {
-        cv::Mat image = imread("./input/001.jpg");
+        cv::Mat image = imread("./input/003.jpg");
         degawong::cImageFilter imageFilter;
         imageFilter.setImageData(image);
-        imageFilter.setFilterModel(DEGA_FILTER_SHARP);
+        imageFilter.setFilterModel(DEGA_FILTER_SPHERIZE);
         cv::Mat outputImage = imageFilter.getFilterImage();
-        imshow("image filter image sharp : ",outputImage);
+        imshow("image filter image spherize : ",outputImage);
         cv::waitKey(0);
     }
     catch (const degawong::cDegaException & exce) {

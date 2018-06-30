@@ -111,3 +111,13 @@
 * <p align="left">add image filter such as edge light in utils<p>
 * <p align="left">add input output dir include images needed<p>
 * <p align="left">sub module can not work,still need to fix it<p>
+
+<font size = 4 face="黑体">
+
+`<edit time 20180701>`
+
+</font>
+
+* <p align="left">rearrange the lib and exe name(name = lib + Demo)<p>
+* <p align="left">add class imageMerge such as overlay light in utils<p>
+

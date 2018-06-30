@@ -32,11 +32,15 @@ public:
 			case DEGA_FILTER_SHARP:{
 				return imageSharp();
 			}
+			case DEGA_FILTER_SPHERIZE:{
+				return spherizeWrap();
+			}
 		}
 	}
 private:
 	cv::Mat edgeLight();
 	cv::Mat imageSharp();
+    cv::Mat spherizeWrap();
 private:
 	cv::Mat image;
 	int filterModel;

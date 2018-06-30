@@ -4,9 +4,7 @@
 
 namespace degawong {
 
-	cLaplaceBlending::~cLaplaceBlending() {
-	}
-
+	cLaplaceBlending::~cLaplaceBlending() {}
 
 	/* gauss pyramid */
 	void cLaplaceBlending::buildGaussianPyramid() {
