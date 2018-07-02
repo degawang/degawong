@@ -1,4 +1,4 @@
-#<font size = 5 face="黑体"><center>mat release note<center></font>
+#<center>mat release note<center>
 
 <font size = 4 face="黑体"><p align="middle">degawong<p></font>
 
@@ -121,3 +121,10 @@
 * <p align="left">rearrange the lib and exe name(name = lib + Demo)<p>
 * <p align="left">add class imageMerge such as overlay light in utils<p>
 
+<font size = 4 face="黑体">
+
+`<edit time 20180702>`
+
+</font>
+
+* <p align="left">found recursive find bugs in win64 plantform<p>
