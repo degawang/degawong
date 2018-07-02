@@ -12,8 +12,8 @@ int main()
 {
 	try{
 		cRecursiveFind recuFind;
-		recuFind.setDirName("e:\\image");
-		auto imageList = recuFind.getImageNameList();
+		recuFind.setInputDir("e:\\image");
+		auto imageList = recuFind.getImageList();
 		for (int i = 0; i < imageList.size(); i++) {
 			std::cout << imageList.at(i).c_str()<< std::endl;
 		}
@@ -23,7 +23,7 @@ int main()
 		waitKey(0);
 	}
 	catch (...) {
-
+		throw;
 	}
 
 	return 0;

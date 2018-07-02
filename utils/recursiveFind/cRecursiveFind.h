@@ -22,12 +22,12 @@ public:
 	virtual ~cRecursiveFind();
 
 public:
-	inline std::vector<std::string> recursiveFineImage(std::string dirName, std::vector<std::string>imageNameList) {
-
-#ifdef DEGA_PLATFORM_WINDOW
+	inline std::vector<std::string> recursiveFineImage(const std::string inputDir, std::vector<std::string> imageList) {
 		try {
+		/* can not work in win 64,why? */
+#ifdef DEGA_PLATFORM_WINDOW
 			_finddata_t imageInfo;
-			std::string findTarget = dirName + "\\*";
+			std::string findTarget = inputDir + "\\*";
 			long imageHandle = _findfirst(findTarget.c_str(), &imageInfo);
 
 			do {
@@ -36,37 +36,41 @@ public:
 				}
 				if (imageInfo.attrib & _A_SUBDIR) {
 					if ((strcmp(imageInfo.name, ".") != 0) && (strcmp(imageInfo.name, "..") != 0)) {
-						std::string subDirName = dirName + "\\" + imageInfo.name;
-						recursiveFineImage(subDirName, imageNameList);
+						std::string subDirName = inputDir + "\\" + imageInfo.name;
+						recursiveFineImage(subDirName, imageList);
 					}
 				}
 				else {
-					imageNameList.push_back(imageInfo.name);
+					imageList.push_back(imageInfo.name);
 				}
-			} while (0 == _findnext(imageHandle, &imageInfo));
+			} while (0 == _findnext(imageHandle, &imageInfo));		
+#endif // DEGA_PLATFORM_WINDOW
 
-			return imageNameList;
+#ifdef DEGA_PLATFORM_LINUX
+	
+#endif // DEGA_PLATFORM_LINUX
+			return imageList;
 		} 
 		catch (const cDegaException& exce) {
 			std::cerr << exce.what() << std::endl;
 			throw;
 		}
-#endif // DEGA_PLATFORM_WINDOW
-#ifdef DEGA_PLATFORM_LINUX
-	
-#endif // DEGA_PLATFORM_LINUX
 	}
 
 public: 
-	inline void setDirName(std::string dirName) {
-		strDirName = dirName;
+	inline void setInputDir(const std::string & _inputDir) {
+		inputDir = _inputDir;
 	}
-	inline std::vector<std::string> getImageNameList() {
-		return recursiveFineImage(strDirName, vecImageName);
+	inline void setOutputDir(const std::string & _outputDir) {
+		outputDir = _outputDir;
+	}
+	inline std::vector<std::string> getImageList() {
+		return recursiveFineImage(inputDir, imageList);
 	}
 private:
-	std::string strDirName;
-	std::vector<std::string> vecImageName;
+	std::string inputDir;
+	std::string outputDir;
+	std::vector<std::string> imageList;
 };
 
 }
