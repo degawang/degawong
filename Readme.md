@@ -1,4 +1,4 @@
-#<center>mat release note<center>
+#mat release note
 
 <font size = 4 face="黑体"><p align="middle">degawong<p></font>
 
@@ -7,7 +7,7 @@
 
 - [x] TASK `[完成对 mat 类的整体设计]`
 - [X] TASK `[析构函数中，对引用计数的递减操作还有问题]`
-- [ ] TASK `[没有支持 vec3x 之类的对 mat 元素的操作]`
+- [X] TASK `[没有支持 vec3x 之类的对 mat 元素的操作]`
 - [X] TASK `[project 中的子项目对 main project 已包含头文件的调用]`
 - [X] TASK `[添加 laplace blending 算法]`
 
@@ -128,3 +128,13 @@
 </font>
 
 * <p align="left">found recursive find bugs in win64 plantform<p>
+
+
+
+<font size = 4 face="黑体">
+
+`<edit time 20180703>`
+
+</font>
+
+* <p align="left">add class model vec3x ...<p>

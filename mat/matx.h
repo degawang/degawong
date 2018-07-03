@@ -1,16 +1,20 @@
+#pragma once
 
 #include "matrix.h"
 
+#ifndef __cplusplus
+#  error matx.hpp header must be compiled as C++
+#endif
+
 namespace degawong {
 
-template <typename _T, int _width, int _height, int _chanels>
-class matx : public matrix<float> {
+template <typename _T, int _width, int _height, int _chanels = 1>
+class matx {
 public:
 	matx() : width(_width), height(_height), chanels(_chanels) { 
 		allocate(); 
 	}
 	~matx() {
-		delocate();
 		if ((nullptr != data) && (nullptr != refCount) && (0 >= (--(*refCount)))) {
 			delocate();
 		}
@@ -67,6 +71,42 @@ public:
 			_T* alligningData = ((_T**)ptr)[-1];
 			free(alligningData);
 		}
+	}
+
+public:
+	//friend _T operator [] (const matx<_T, width, height, 1> &_matx, int _height) {
+	//	return _matx.data[_height * width + width - 1];
+	//}
+	//friend std::istream& operator >> (std::istream& is, matx &_matx) {
+	//	is >> _matx.data[0];
+	//	return is;
+	//}
+	//friend std::ostream& operator << (std::ostream& os, const matx<_T, width, height, 1> &_matx) {
+	//	try {
+	//		//if (DEGA_FORMAT_BGR != _mat.format)
+	//		//{
+	//		//	throw cParaExce("invalid mat format");
+	//		//}
+	//		os << "degawong matx version _0_0_1" << std::endl;
+	//		os << std::left << std::setw(10) << "matx width : " << _matx.width << std::endl;
+	//		os << std::left << std::setw(10) << "matx height : " << _matx.height << std::endl;
+	//		for (int loop_i = 0; loop_i < _matx.height; loop_i++) {
+	//			for (int loop_j = 0; loop_j < _matx.width; loop_j++) {
+	//				for (int loop_k = 0; loop_k < _matx.chanels; loop_k++) {
+	//					os << std::right << std::setw(5) << _matx.data[0][loop_i * _matx.width + loop_j * _matx.chanels + loop_k];
+	//				}
+	//			}
+	//			os << std::endl;
+	//		}
+	//		return os;
+	//	} catch (cParaExce &exce) {
+	//		std::cerr << exce.what() << std::endl;
+	//		throw;
+	//	}
+	//}
+public:
+	inline virtual _T& at(int _height, int _width = 1) {
+		return data[_height * width + _width];
 	}
 
 public:

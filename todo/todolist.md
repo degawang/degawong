@@ -1,6 +1,4 @@
-#
-<font size = 5 face="黑体">
-<center>to do list<center>
+# to do list
 </font>
 
 <font size = 4 face="黑体">
@@ -62,5 +60,10 @@
 
 * <p align="left">directory faceLandmark need to be renamed<p>
 
+<font size = 4 face="黑体">
 
+`<edit time 20180703>`
 
+</font>
+
+* <p align="left">dll_export define in different platform should be added<p>

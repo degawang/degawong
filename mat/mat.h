@@ -1,5 +1,6 @@
 #pragma once
 
+#include "vec.h"
 #include "fstream"
 #include "iomanip"
 #include "iostream"
@@ -13,9 +14,8 @@
 
 namespace degawong {
 
-template <typename _T>
+template <typename _T = unsigned char>
 class mat {
-
 public:
 	/* default constructor */
 	mat() 
@@ -284,9 +284,13 @@ public:
 	int getRefCount() const;
 	int getPitch() const;
 public:
-	template<typename _IT>	
+	//template<typename _IT>	
+	//inline _IT& at(int _width, int _height) {
+	//	return data[0][_height * pitch[0] + _width * getChanels()];
+	//}
+	template<typename _IT>
 	inline _IT& at(int _width, int _height) {
-		return data[0][_height * pitch[0] + _width * getChanels()];
+		return (_IT)(data[0][_height * pitch[0] + _width * getChanels()]);
 	}
 	inline
 		_T* ptr(int _width, int _height) {

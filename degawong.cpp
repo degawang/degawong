@@ -1,4 +1,5 @@
 ﻿
+#include "vec.h"
 #include "mat.h"
 #include "matrix.h"
 #include "cDegaGui.h"
@@ -94,6 +95,22 @@ void defaultMouseCallBack(int eventHandle, int location_x, int location_y, int f
 
 int main()
 {
+	cDegaGui gui;
+
+	mat<int> image(5, 5, 1, 100);
+	image.at<vec3i>(1, 1)[0] = 10;
+	image.at<vec3i>(1, 1)[1] = 11;
+	image.at<vec3i>(1, 1)[2] = 12;
+	cout << image << endl;
+
+	//degawong::vec3i v3;
+	//v3.at(0) = 1000;
+	//v3.at(1) = 2000;
+	//v3.at(2) = 3000;
+	//for (int i = 0; i < 3; i++) {
+	//	cout << v3.at(i) << endl;
+	//}
+
 	/* armadillo */
 	//arma::mat A(5, 5, arma::fill::randu);
 	//cout << A << endl;
@@ -136,7 +153,6 @@ int main()
 	//degawong::cLaplaceBlending laplaceImage(image_1, image_2, mask, 3);
 	//cv::Mat image = laplaceImage.examples();
 
-	//cDegaGui gui;
 	//gui.disImage(image, "image");
 	//imwrite("./output/blendResult.bmp", image);
 
@@ -152,13 +168,13 @@ int main()
 	//win.set_image(img);
 	//win.add_overlay(dets, rgb_pixel(255, 0, 0));
 
-	cv::Mat image = imread("./input/001.jpg");
-	degawong::cImageFilter imageFilter;
-	imageFilter.setImageData(image);
-	imageFilter.setFilterModel(DEGA_FILTER_SHARP);
-	cv::Mat outputImage = imageFilter.getFilterImage();
-	imshow("image filter image sharp : ",outputImage);
+	//cv::Mat image = imread("./input/001.jpg");
+	//degawong::cImageFilter imageFilter;
+	//imageFilter.setImageData(image);
+	//imageFilter.setFilterModel(DEGA_FILTER_SHARP);
+	//cv::Mat outputImage = imageFilter.getFilterImage();
+	//gui.disImage(image, "image filter image sharp : ");
 
-	waitKey(0);
+	//waitKey(0);
 	return 0;
 }
