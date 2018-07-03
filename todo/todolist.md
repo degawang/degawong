@@ -67,3 +67,5 @@
 </font>
 
 * <p align="left">dll_export define in different platform should be added<p>
+* <p align="left">bugs need to be fixed :<p>
+* <p align="left">error: declaration of 'int _height' shadows template parameter<p>

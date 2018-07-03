@@ -13,7 +13,7 @@ using namespace std;
 int main(int argc, char** argv)
 {  
     try {
-        cv::Mat image = imread("./input/003.jpg");
+        cv::Mat image = imread("./input/001.jpg");
         degawong::cImageFilter imageFilter;
         imageFilter.setImageData(image);
         imageFilter.setFilterModel(DEGA_FILTER_SPHERIZE);
