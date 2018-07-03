@@ -100,15 +100,15 @@ public:
 		*this = value;
 	}
 	/* custom-made constructor */
-	mat(const cv::Mat &_mat)
-		: width(_mat.cols), height(_mat.rows), format(0), value(0), chanels(_mat.channels()), subRegion(0),
+	mat(const cv::Mat& _Mat)
+		: width(_Mat.cols), height(_Mat.rows), format(0), value(0), chanels(_Mat.channels()), subRegion(0),
 		memoExce("mat class: out of memory"), paraExce("mat class: invalid parameter"), fileExce("mat class: file open error") {
 		try {
-			if (3 < _mat.channels()) {
+			if (3 < _Mat.channels()) {
 				throw cParaExce("mat chanels should not bigger or equal than 3");
 			}
-			width = _mat.cols;
-			height = _mat.rows;
+			width = _Mat.cols;
+			height = _Mat.rows;
 			refCount = nullptr;
 
 			pitch[0] = caculPitch();
@@ -126,17 +126,15 @@ public:
 			for (int loop_i = 0; loop_i < height; loop_i++) {
 				for (int loop_j = 0; loop_j < width; loop_j++) {
 					for (int loop_k = 0; loop_k < chanels; loop_k++) {
-						data[0][loop_i * pitch[0] + loop_j * chanels + loop_k] = _mat.at<cv::Vec3b>(loop_i, loop_j)[loop_k];
+						data[0][loop_i * pitch[0] + loop_j * chanels + loop_k] = _Mat.at<cv::Vec3b>(loop_i, loop_j)[loop_k];
 					}
 				}
 			}
-
 		}
 		catch (const cParaExce& exce) {
 			std::cerr << exce.what() << std::endl;
 		}
 	}
-
 	/* default destructor */
 	virtual ~mat() { 
 		if ((nullptr != data[0]) && (nullptr != refCount)) {
@@ -296,48 +294,73 @@ public:
 		_T* ptr(int _width, int _height) {
 		return (_T*)(data[0] + _height * pitch[0] + _width * sizeof(_T));
 	}
-	inline
-		_T* begin() {
+	inline _T* begin() {
 		return (_T*)(&(data[0][0]));
 	}
-	inline
-		_T* end() {
+	inline _T* end() {
 		return (_T*)(&(data[0][height * pitch[0]]));
 	}
-	inline
-		mat<_T>& reshape(int _width, int _height) {
+	inline mat<_T>& reshape(int _width, int _height) {
 
 		width = _width;
 		height = _height;
 		pitch[0] = caculPitch();
 		return *this;
 	}
-
-	inline
-		mat<_T>& ref() {
+	inline mat<_T>& ref() {
 		return *this;
 	}
-	inline
-		mat<_T> clone() {
+	inline mat<_T> clone() {
 		return *this;
 	}
 public:
 	mat<_T> imCorp(int _start_width, int _start_height, int _width, int _height);
+
+public:
+	inline void cvt2Mat(cv::Mat& _Mat) {
+		
+		try {
+			if (_Mat.empty()) {
+				_Mat = cv::Mat(height, width, CV_8UC3);
+				for (int loop_i = 0; loop_i < height; loop_i++) {
+					for (int loop_j = 0; loop_j < width; loop_j++) {
+						for (int loop_k = 0; loop_k < chanels; loop_k++) {
+							_Mat.at<cv::Vec3b>(loop_i, loop_j)[loop_k] = data[0][loop_i * pitch[0] + loop_j * chanels + loop_k];
+						}
+					}
+				}
+			}
+			else {
+				if (width != _Mat.cols || height != _Mat.rows) {
+					throw cParaExce("input Mat must be the same size with the mat !");
+				}
+				for (int loop_i = 0; loop_i < height; loop_i++) {
+					for (int loop_j = 0; loop_j < width; loop_j++) {
+						for (int loop_k = 0; loop_k < chanels; loop_k++) {
+							_Mat.at<cv::Vec3b>(loop_i, loop_j)[loop_k] = data[0][loop_i * pitch[0] + loop_j * chanels + loop_k];
+						}
+					}
+				}
+			}
+		}
+		catch (const cDegaException& exce) {
+			std::cerr << exce.what() << std::endl;
+			throw;
+		}
+
+	}
 public:	
 	void print() const;
 	void getVerson() const;
 	void save(std::string pathName, unsigned char _Mode = std::ios::in | std::ios::trunc | std::ios::binary) const;
 	void load(std::string pathName, unsigned char _Mode = std::ios::out | std::ios::trunc | std::ios::binary) const;
 private:
-	inline
-		int caculPitch() {
+	inline int caculPitch() {
 		int bytes = 8 * getChanels();
 		return ((long)(width) * (bytes) + 31) / 32 * 4;
 	}
-	inline
-		void setData(const mat<_T>& _mat);
-	inline
-		void clearData(mat<_T>& _mat);
+	inline void setData(const mat<_T>& _mat);
+	inline void clearData(mat<_T>& _mat);
 private:
 	/* define multi  variables to fit some kinds of log request */
 	//cMemoExce memoExce;

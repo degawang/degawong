@@ -129,8 +129,6 @@
 
 * <p align="left">found recursive find bugs in win64 plantform<p>
 
-
-
 <font size = 4 face="黑体">
 
 `<edit time 20180703>`
@@ -138,3 +136,6 @@
 </font>
 
 * <p align="left">add class model vec3x ...<p>
+* <p align="left">edit class mat<p>
+* <p align="left">add iamgeProcess class<p>
+* <p align="left">add image algorithm imresize ...<p>
