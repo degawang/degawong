@@ -8,10 +8,10 @@
 
 namespace degawong {
 
-template <typename _T, int _height> 
-class vecRow : public matx<_T, 1, _height> {
+template <typename _T, int __height>
+class vecRow : public matx<_T, 1, __height> {
 public:
-	vecRow() : width(1), height(_height), chanels(1) {
+	vecRow() : width(1), height(__height), chanels(1) {
 		allocate();
 	}
 	~vecRow() {
@@ -23,8 +23,7 @@ public:
 
 public:
 	/* vec memory allocator && delocate */;
-	inline
-		void allocate() {
+	inline void allocate() {
 		try {
 
 			refCount = new int(1);
@@ -40,13 +39,12 @@ public:
 			throw;
 		}
 	}
-	inline
-		void delocate() {
+	inline void delocate() {
 		delete refCount;
 		fastFree(data);
 	}
 	template<typename _IT> static
-		inline	_IT* alignPtr(_IT* ptr, int n = (int)sizeof(_IT)) {
+	inline	_IT* alignPtr(_IT* ptr, int n = (int)sizeof(_IT)) {
 		return (_IT*)(((size_t)ptr + n - 1) & -n);
 	}
 	void* fastMalloc(size_t size) {
@@ -64,8 +62,7 @@ public:
 			throw;
 		}
 	}
-	inline
-		void fastFree(void* ptr) {
+	inline void fastFree(void* ptr) {
 		if (ptr) {
 			_T* alligningData = ((_T**)ptr)[-1];
 			free(alligningData);
@@ -83,14 +80,14 @@ private:
 	_T * data;
 };
 
-template <typename _T, int _width> 
-class vecCol : public matx<_T, _width, 1> {
+template <typename _T, int __width>
+class vecCol : public matx<_T, __width, 1> {
 public:
-	vecCol() : width(_width), height(1), chanels(1) {
+	vecCol() : width(__width), height(1), chanels(1) {
 		allocate(); 
 	}
 	/* for mat.at<vec3x>[...] */
-	vecCol(_T &_firstValue) : width(_width), height(1), chanels(1) {
+	vecCol(_T &_firstValue) : width(__width), height(1), chanels(1) {
 		refCount = nullptr;
 		data = &_firstValue;
 	}

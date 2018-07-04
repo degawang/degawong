@@ -10,6 +10,7 @@
 - [X] TASK `[没有支持 vec3x 之类的对 mat 元素的操作]`
 - [X] TASK `[project 中的子项目对 main project 已包含头文件的调用]`
 - [X] TASK `[添加 laplace blending 算法]`
+- [ ] TASK `[添加使用外部输入库功能]`
 
 </font>
 <p>
@@ -148,3 +149,4 @@
 
 * <p align="left">sketch filter still can not work<p>
 * <p align="left">gauss kennel can not be set correctly in windows and linux<p>
+* <p align="left">fix linux compile error in shadow template parameter<p>

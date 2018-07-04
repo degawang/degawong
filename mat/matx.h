@@ -8,10 +8,10 @@
 
 namespace degawong {
 
-template <typename _T, int _width, int _height, int _chanels = 1>
+template <typename _T, int __width, int __height, int __chanels = 1>
 class matx {
 public:
-	matx() : width(_width), height(_height), chanels(_chanels) { 
+	matx() : width(__width), height(__height), chanels(__chanels) {
 		allocate(); 
 	}
 	~matx() {
