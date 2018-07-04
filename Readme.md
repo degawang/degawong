@@ -147,6 +147,7 @@
 
 </font>
 
+* <p align="left">change commit style<p>
 * <p align="left">sketch filter still can not work<p>
 * <p align="left">gauss kennel can not be set correctly in windows and linux<p>
 * <p align="left">fix linux compile error in shadow template parameter<p>

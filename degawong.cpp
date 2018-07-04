@@ -177,15 +177,17 @@ int main()
 		//cv::Mat outputImage = imageFilter.getFilterImage();
 		//gui.disImage(image, "image filter image sharp : ");
 	
-		cv::Mat image_Mat = imread("./input/001.jpg");
-		gui.disImage(image_Mat, "ori_image");
-		degawong::mat image_mat(image_Mat);
-		degawong::mat image_crop = image_mat.imCorp(0, 0, 5, 5);
-		cout << image_crop << endl;
-		image_mat += 20;
-		image_mat.cvt2Mat(image_Mat);
-		cout << image_crop << endl;
-		gui.disImage(image_Mat, "dst_image");
+		/* mat vec operation */
+		//cv::Mat image_Mat = imread("./input/001.jpg");
+		//gui.disImage(image_Mat, "ori_image");
+		//degawong::mat image_mat(image_Mat);
+		//degawong::mat image_crop = image_mat.imCorp(0, 0, 5, 5);
+		//cout << image_crop << endl;
+		//image_mat += 20;
+		//image_mat.cvt2Mat(image_Mat);
+		//cout << image_crop << endl;
+		//gui.disImage(image_Mat, "dst_image");
+
 		waitKey(0);
 		return 0;
 	}

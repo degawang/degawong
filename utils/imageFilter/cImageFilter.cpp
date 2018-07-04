@@ -2,6 +2,27 @@
 
 namespace degawong {
 
+/* emboss filter */
+cv::Mat cImageFilter::emboss() {
+	
+	int border = 1;
+	int offset = 128;
+	cv::Mat imageGauss;
+	cv::Mat outputMat(image.size(), image.type());
+	cv::Mat kernel = (cv::Mat_<int>(3, 3) << -1, 0, -1,
+		0, 4, 0,
+		-1, 0, -1);
+	cv::filter2D(image, imageGauss, image.depth(), kernel);
+
+	for (int loop_i = border; loop_i < image.rows - border; ++loop_i) {
+		for (int loop_j = border; loop_j < image.cols - border; ++loop_j) {
+			for (int loop_k = 0; loop_k < image.channels(); loop_k++) {
+				outputMat.at<cv::Vec3b>(loop_i, loop_j)[loop_k] = cv::saturate_cast<uchar>(imageGauss.at<cv::Vec3b>(loop_i, loop_j)[loop_k] + offset);
+			}
+		}
+	}
+	return cv::Mat(outputMat);
+}
 /* sketch filter */
 cv::Mat cImageFilter::sketch() {
 
@@ -66,8 +87,7 @@ cv::Mat cImageFilter::edgeLight(){
     }
     return cv::Mat(outputMat);
 }
-
-/* image sharp filter */
+/* sharp filter */
 cv::Mat cImageFilter::imageSharp() {
 
     double sigma = 3;
@@ -84,8 +104,7 @@ cv::Mat cImageFilter::imageSharp() {
 
     return cv::Mat(outputMat);
 }
-
-/* image spherize filter */
+/* spherize filter */
 cv::Mat cImageFilter::spherizeWrap() {
 
     cv::Mat outputMat(image.size(),image.type());
@@ -149,8 +168,92 @@ cv::Mat cImageFilter::spherizeWrap() {
 
         }
     }
-
     return cv::Mat(outputMat);
+}
+/* wooden filter */
+cv::Mat cImageFilter::wooden() {
+	int tempPixel = 0;
+	cv::Mat outputMat(image.size(), image.type());
+	for (int loop_i = 0; loop_i < image.rows; ++loop_i) {
+		for (int loop_j = 0; loop_j < image.cols; ++loop_j) {
+			tempPixel = 0;
+			for (int loop_k = 0; loop_k < image.channels(); loop_k++) {
+				tempPixel += image.at<cv::Vec3b>(loop_i, loop_j)[loop_k];
+			}
+			if (384 >= tempPixel) {
+				for (int loop_k = 0; loop_k < image.channels(); loop_k++) {
+					outputMat.at<cv::Vec3b>(loop_i, loop_j)[loop_k] = 255;
+				} 
+			}
+			else {
+				for (int loop_k = 0; loop_k < image.channels(); loop_k++) {
+					outputMat.at<cv::Vec3b>(loop_i, loop_j)[loop_k] = 0;
+				}
+			}
+		}
+	}
+	return cv::Mat(outputMat);
+}
+/* light filter */
+cv::Mat cImageFilter::light() {
+	
+	int a = 256; int b = 312; int m = 100; int n = 17;
+	cv::Mat outputMat(image.size(), image.type());
+
+	for (int j = 0; j < image.rows; j++) {
+		const uchar*current = image.ptr<const uchar>(j);
+		uchar *output = outputMat.ptr<uchar>(j);
+		for (int i = 0; i < image.cols; ++i) {
+			for (int ch = 0; ch < 3; ++ch) {
+				uchar tmp;
+				if (sqrt((j - a)*(j - a) + (i - b)*(i - b)) - b < 0)
+					tmp = cv::saturate_cast<uchar>(current[3 * i + ch] + m * (1 - (sqrt((j - a)*(j - a) + (i - b)*(i - b)) + n) / b));
+				else  tmp = current[3 * i + ch];
+				output[3 * i + ch] = tmp;
+			}
+		}
+	}
+	return cv::Mat(outputMat);
+}
+/* oilPaint filter */
+cv::Mat cImageFilter::oilPaint() {
+	
+	cv::Mat outputMat(image.size(), image.type());
+	for (int j = 0; j < image.rows - 2; j++) {
+		//const uchar*current=OriginalImage.ptr<const uchar>(j);//µ±Ç°ÐÐ
+		const uchar*next1 = image.ptr<const uchar>(j + 1);
+		const uchar*next2 = image.ptr<const uchar>(j + 2);
+		const uchar*next = next1;
+		uchar *output = outputMat.ptr<uchar>(j);
+		for (int i = 0; i < image.cols - 2; ++i) {
+			if (rand() % 2)
+				next = next2;
+			else next = next1;
+			int count = 3 * (i + 1);
+			if (rand() % 2)
+				count = 3 * (i + 2);
+			else count = 3 * (i + 1);
+
+			for (int ch = 0; ch < 3; ++ch) {
+				output[3 * i + ch] = next[count + ch];
+			}
+		}
+	}
+	return cv::Mat(outputMat);
+}
+/* comic filter */
+cv::Mat cImageFilter::comic() {
+	cv::Mat outputMat(image.size(), image.type());
+	for (int j = 0; j < image.rows; j++) {
+		const uchar*current = image.ptr<const uchar>(j);
+		uchar *output = outputMat.ptr<uchar>(j);
+		for (int i = 0; i < image.cols; ++i) {
+			output[3 * i + 0] = cv::saturate_cast<uchar>(abs(-current[3 * i + 0] + 2 * current[3 * i + 1] + current[3 * i + 2])*current[3 * i + 2] / 256);
+			output[3 * i + 1] = cv::saturate_cast<uchar>(abs(2 * current[3 * i + 0] - current[3 * i + 1] + current[3 * i + 2])*current[3 * i + 2] / 256);
+			output[3 * i + 2] = cv::saturate_cast<uchar>(abs(2 * current[3 * i + 0] - current[3 * i + 1] + current[3 * i + 2])*current[3 * i + 1] / 256);
+		}
+	}
+	return cv::Mat(outputMat);
 }
 
 }
