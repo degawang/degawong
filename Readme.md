@@ -139,3 +139,12 @@
 * <p align="left">edit class mat<p>
 * <p align="left">add iamgeProcess class<p>
 * <p align="left">add image algorithm imresize ...<p>
+
+<font size = 4 face="黑体">
+
+`<edit time 20180704>`
+
+</font>
+
+* <p align="left">sketch filter still can not work<p>
+* <p align="left">gauss kennel can not be set correctly in windows and linux<p>

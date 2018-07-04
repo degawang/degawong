@@ -16,7 +16,7 @@ int main(int argc, char** argv)
     try {
         degawong::cDegaGui gui;
         degawong::cDegaTime time;
-        cv::Mat image = imread("./input/001.jpg",IMREAD_GRAYSCALE);
+        cv::Mat image = imread("e:/image/001.jpg",IMREAD_GRAYSCALE);
         imshow("ori_image",image);
         degawong::cImageProcess imageProcess;
         cv::Mat outputImage(image.rows * 2, image.cols * 3, image.type());

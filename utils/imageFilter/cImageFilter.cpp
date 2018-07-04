@@ -2,7 +2,35 @@
 
 namespace degawong {
 
-/* edgeLight fliter */
+/* sketch filter */
+cv::Mat cImageFilter::sketch() {
+
+	cv::Mat imageGray;
+	cv::Mat imageGauss;
+	cv::Mat outputMat(image.size(), CV_8UC1);
+	cv::cvtColor(image, imageGray, cv::COLOR_BGR2GRAY);
+	cv::Mat grayReverse = 255 - imageGray;
+	cv::Mat kernel = (cv::Mat_<int>(3, 3) << 1, 2, 1,
+		2, 4, 2,
+		1, 2, 1);
+	cv::filter2D(grayReverse, imageGauss, grayReverse.depth(), kernel);
+
+	cv::Mat_<uchar>::iterator itend_1 = imageGray.end<uchar>();
+	cv::Mat_<uchar>::iterator itstart_1 = imageGray.begin<uchar>();
+	cv::Mat_<uchar>::iterator itstart_2 = imageGauss.begin<uchar>();
+	cv::Mat_<uchar>::iterator itstart = outputMat.begin<uchar>();
+
+	for (; itstart_1 != itend_1; ++itstart, ++itstart_1, ++itstart_2) {
+		for (size_t loop_i = 0; loop_i < image.channels(); loop_i++) {
+			float grayValue = *itstart_1;
+			float gaussValue = *itstart_2;
+			
+			*itstart = uchar(std::min(255.f,grayValue + grayValue * gaussValue / (255.f - gaussValue)));
+		}
+	}
+	return cv::Mat(outputMat);
+}
+/* edgeLight filter */
 cv::Mat cImageFilter::edgeLight(){
 
     int para_1 = 3;
@@ -39,7 +67,7 @@ cv::Mat cImageFilter::edgeLight(){
     return cv::Mat(outputMat);
 }
 
-/* image sharp fliter */
+/* image sharp filter */
 cv::Mat cImageFilter::imageSharp() {
 
     double sigma = 3;
@@ -57,7 +85,7 @@ cv::Mat cImageFilter::imageSharp() {
     return cv::Mat(outputMat);
 }
 
-/* image spherize fliter */
+/* image spherize filter */
 cv::Mat cImageFilter::spherizeWrap() {
 
     cv::Mat outputMat(image.size(),image.type());

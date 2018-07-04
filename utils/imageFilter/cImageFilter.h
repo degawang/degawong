@@ -21,7 +21,10 @@ public:
 	inline void setImageData(const cv::Mat & _image) {
 		image = _image;
 	}
-	inline void setFilterModel(const int & _filterModel) {
+	inline void setFilterIntensity(const float& _intensity) {
+		intensity = _intensity;
+	}
+	inline void setFilterModel(const int& _filterModel) {
 		filterModel = _filterModel;
 	}
 	inline cv::Mat getFilterImage() {
@@ -32,18 +35,23 @@ public:
 			case DEGA_FILTER_SHARP:{
 				return imageSharp();
 			}
+			case DEGA_FILTER_SKETCH:{
+				return sketch();
+			}
 			case DEGA_FILTER_SPHERIZE:{
 				return spherizeWrap();
 			}
 		}
 	}
 private:
+	cv::Mat sketch();
 	cv::Mat edgeLight();
 	cv::Mat imageSharp();
     cv::Mat spherizeWrap();
 private:
 	cv::Mat image;
 	int filterModel;
+	float intensity;
 };
 
 }

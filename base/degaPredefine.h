@@ -13,7 +13,8 @@
 /* image filter */
 #define     DEGA_FILTER_EDGE            0X01
 #define     DEGA_FILTER_SHARP           0X02
-#define     DEGA_FILTER_SPHERIZE        0X03
+#define     DEGA_FILTER_SKETCH          0X03
+#define     DEGA_FILTER_SPHERIZE        0X04
 
 /* image process */
 #define     DEGA_PROCESS_RESIZE         0X01

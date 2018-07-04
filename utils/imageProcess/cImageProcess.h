@@ -22,7 +22,7 @@ public:
 	inline void setProcessModel(const int & _processModel) {
 		processModel = _processModel;
 	}
-	inline cv::Mat getProcessImage(const cv::Mat inputImage, cv::Mat outputImage) {
+	inline void getProcessImage(const cv::Mat inputImage, cv::Mat outputImage) {
 		switch (processModel){
 			case DEGA_PROCESS_RESIZE:{
                 imResize(inputImage, outputImage);
@@ -30,7 +30,7 @@ public:
 		}
 	}
 private:
-	inline void imResize(const cv::Mat inputImage, cv::Mat outputImage);
+	void imResize(const cv::Mat inputImage, cv::Mat outputImage);
 private:
 	int processModel;
 };

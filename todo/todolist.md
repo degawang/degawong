@@ -6,7 +6,6 @@
 <p align="right">
 
 `<degawong>`
-
 <p>
 
 </font>
@@ -14,7 +13,6 @@
 <font size = 4 face="黑体">
 
 `<edit time 20180611>`
-
 </font>
 
 * <p align="left">add debug release segment<p>
@@ -27,7 +25,6 @@
 <font size = 4 face="黑体">
 
 `<edit time 20180620>`
-
 </font>
 
 * <p align="left">care the pitch in move constructor and move set function<p>
@@ -36,7 +33,6 @@
 <font size = 4 face="黑体">
 
 `<edit time 20180621>`
-
 </font>
 
 * <p align="left">can not transfer the mat into mouse callback function<p>
@@ -45,7 +41,6 @@
 <font size = 4 face="黑体">
 
 `<edit time 20180629>`
-
 </font>
 
 * <p align="left">add video dealing project<p>
@@ -55,7 +50,6 @@
 <font size = 4 face="黑体">
 
 `<edit time 20180701>`
-
 </font>
 
 * <p align="left">directory faceLandmark need to be renamed<p>
@@ -63,9 +57,15 @@
 <font size = 4 face="黑体">
 
 `<edit time 20180703>`
-
 </font>
 
 * <p align="left">dll_export define in different platform should be added<p>
 * <p align="left">bugs need to be fixed :<p>
 * <p align="left">error: declaration of 'int _height' shadows template parameter<p>
+
+<font size = 4 face="黑体">
+
+`<edit time 20180704>`
+</font>
+
+* <p align="left">found Mat_ bugs in windows and linux are in different style<p>
