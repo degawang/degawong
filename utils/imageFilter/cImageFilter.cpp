@@ -9,9 +9,9 @@ cv::Mat cImageFilter::emboss() {
 	int offset = 128;
 	cv::Mat imageGauss;
 	cv::Mat outputMat(image.size(), image.type());
-	cv::Mat kernel = (cv::Mat_<int>(3, 3) << -1, 0, -1,
-		0, 4, 0,
-		-1, 0, -1);
+	cv::Mat kernel = cv::Mat_<int>(3, 3) << (-1, 0, -1,
+			0, 4, 0,
+			-1, 0, -1);
 	cv::filter2D(image, imageGauss, image.depth(), kernel);
 
 	for (int loop_i = border; loop_i < image.rows - border; ++loop_i) {
@@ -31,9 +31,9 @@ cv::Mat cImageFilter::sketch() {
 	cv::Mat outputMat(image.size(), CV_8UC1);
 	cv::cvtColor(image, imageGray, cv::COLOR_BGR2GRAY);
 	cv::Mat grayReverse = 255 - imageGray;
-	cv::Mat kernel = (cv::Mat_<int>(3, 3) << 1, 2, 1,
-		2, 4, 2,
-		1, 2, 1);
+	cv::Mat kernel = cv::Mat_<int>(3, 3) << (1, 2, 1,
+			2, 4, 2,
+			1, 2, 1);
 	cv::filter2D(grayReverse, imageGauss, grayReverse.depth(), kernel);
 
 	cv::Mat_<uchar>::iterator itend_1 = imageGray.end<uchar>();

@@ -170,13 +170,14 @@ int main()
 		//win.add_overlay(dets, rgb_pixel(255, 0, 0));
 	
 		/* image filter */
-		//cv::Mat image = imread("./input/001.jpg");
+		//cv::Mat image = imread("./input/003.jpg");
 		//degawong::cImageFilter imageFilter;
 		//imageFilter.setImageData(image);
-		//imageFilter.setFilterModel(DEGA_FILTER_SHARP);
+		//imageFilter.setFilterModel(DEGA_FILTER_COMIC);
 		//cv::Mat outputImage = imageFilter.getFilterImage();
-		//gui.disImage(image, "image filter image sharp : ");
-	
+		//gui.disImage(image, "ori image : ");
+        //gui.disImage(outputImage, "image filter image sharp : ");
+
 		/* mat vec operation */
 		//cv::Mat image_Mat = imread("./input/001.jpg");
 		//gui.disImage(image_Mat, "ori_image");
